@@ -1,5 +1,5 @@
 export type RecipeType = {
-  name: String;
+  name: string;
   ingredients: Array<string>;
   directions: Array<string>;
 };
