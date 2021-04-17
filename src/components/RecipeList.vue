@@ -1,23 +1,25 @@
 <template>
   <div class="container">
-    <ul>
-      <li v-for="row in list" :key="row.name">{{ row.name }}</li>
+    <ul class="list-disc list-inside">
+      <li v-for="recipe in recipes" :key="recipe.name" @click="$emit('select', recipe.name)">{{ recipe.name }}</li>
     </ul>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, PropType } from 'vue';
+import { defineComponent, inject } from 'vue';
 import { RecipeListType } from '@type';
 
 export default defineComponent({
-  props: {
-    list: Array as PropType<RecipeListType>,
-  },
-  setup(props) {
+  setup() {
+    const recipes = inject<RecipeListType>('recipes');
+
     return {
-      list: props.list,
+      recipes,
     };
+  },
+  emits: {
+    select: null,
   },
 });
 </script>
