@@ -6,6 +6,7 @@ const { resolve } = require('path');
 export default defineConfig({
   resolve: {
     alias: {
+      '@components': resolve(__dirname, './src/components'),
       '@type': resolve(__dirname, './src/types/type.ts'),
     },
   },

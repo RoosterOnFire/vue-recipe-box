@@ -11,6 +11,7 @@
     "lib": ["esnext", "dom"],
     "types": ["vite/client"],
     "paths": {
+      "@component*": ["./src/components/"],
       "@type*": ["./src/types/type.ts"]
     }
   },
