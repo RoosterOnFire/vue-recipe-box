@@ -41,6 +41,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@heroicons/vue@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "@heroicons/vue@npm:1.0.1"
+  peerDependencies:
+    vue: ">= 3"
+  checksum: b4cdf185c63da610a124064a6c1a6cf09e0861ea6bef9a5a2fcb2bef42a944af9686bd38c88593b897e922ef1d387d84dcabcec3bfab087b2d846d0a19077367
+  languageName: node
+  linkType: hard
+
 "@nodelib/fs.scandir@npm:2.1.4":
   version: 2.1.4
   resolution: "@nodelib/fs.scandir@npm:2.1.4"
@@ -2376,6 +2385,7 @@ typescript@^4.1.3:
   version: 0.0.0-use.local
   resolution: "vue-recipe-box@workspace:."
   dependencies:
+    "@heroicons/vue": ^1.0.1
     "@tailwindcss/forms": ^0.3.2
     "@types/node": ^14.14.41
     "@vitejs/plugin-vue": ^1.2.1
