@@ -1,15 +1,21 @@
 <template>
   <div class="flex flex-col items-center max-w-2xl h-screen p-4 mx-auto gap-4 text-2xl">
-    <h1 class="font-serif italic text-6xl">{{ heading }}</h1>
+    <h1 class="font-serif italic text-6xl">Recipe box</h1>
     <RecipeList class="p-2 bg-gray-100 border-2 border-gray-400 rounded shadow-md" @select="updateSelectedRecipe" />
-    <RecipeView class="p-2 bg-gray-100 border-2 border-gray-400 rounded shadow-xl" />
+    <RecipeView
+      class="p-2 bg-gray-100 border-2 border-gray-400 rounded shadow-xl"
+      @edit="toggleEdit"
+      @delete="deleteRecipe"
+    />
+    <RecipeEdit v-if="isEditOpen" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, provide } from 'vue';
+import { defineComponent, ref, provide, reactive } from 'vue';
 import RecipeList from '@component/RecipeList.vue';
 import RecipeView from '@component/RecipeView.vue';
+import RecipeEdit from '@component/RecipeEdit.vue';
 import { RecipeListType, RecipeType } from '@type';
 
 export default defineComponent({
@@ -17,11 +23,10 @@ export default defineComponent({
   components: {
     RecipeList,
     RecipeView,
+    RecipeEdit,
   },
   setup() {
-    const heading = 'Recipe box';
-    const selectedRecipe = ref<RecipeType>();
-    const recipes = ref<RecipeListType>([
+    const recipes = reactive<RecipeListType>([
       {
         name: 'RecipeName1',
         ingredients: ['ingredient11'],
@@ -38,17 +43,39 @@ export default defineComponent({
         directions: ['directions31', 'directions32', 'directions33'],
       },
     ]);
+    const selectedRecipe = ref<RecipeType>(recipes[0]);
+    const updateRecipe = (action: 'ingredients' | 'directions', index: number, newValue: string) => {
+      const name = selectedRecipe.value.name;
+
+      recipes.filter((recipe) => recipe.name === name)[0][action][index] = newValue;
+    };
+    const deleteRecipe = () => {
+      const index = recipes.indexOf(selectedRecipe.value);
+
+      recipes.splice(index, 1);
+
+      selectedRecipe.value = {} as RecipeType;
+    };
 
     const updateSelectedRecipe = (name: string) => {
-      selectedRecipe.value = recipes.value.filter((recipe) => recipe.name === name)[0];
+      selectedRecipe.value = recipes.filter((recipe) => recipe.name === name)[0];
+    };
+
+    const isEditOpen = ref(false);
+    const toggleEdit = () => {
+      isEditOpen.value = !isEditOpen.value;
     };
 
     provide('recipes', recipes);
     provide('selectedRecipe', selectedRecipe);
+    provide('toggleEdit', toggleEdit);
+    provide('updateRecipe', updateRecipe);
 
     return {
-      heading,
+      isEditOpen,
       updateSelectedRecipe,
+      deleteRecipe,
+      toggleEdit,
     };
   },
 });

@@ -1,10 +1,10 @@
 <template>
   <transition name="fade" mode="out-in">
-    <div class="container space-y-8 transition duration-500 ease-in-out" v-if="recipe">
+    <div class="container space-y-8 transition duration-500 ease-in-out" v-if="recipe && recipe.name">
       <div class="flex items-center space-x-3">
         <h2 class="text-3xl">Recipe: {{ recipe.name }}</h2>
-        <TrashIcon class="h-8 w-8 cursor-pointer" />
-        <PencilAltIcon class="h-8 w-8 cursor-pointer" />
+        <PencilAltIcon class="h-8 w-8 cursor-pointer" @click="$emit('edit')" />
+        <TrashIcon class="h-8 w-8 cursor-pointer" @click="$emit('delete', recipe.name)" />
       </div>
       <div>
         <h3>Ingredients</h3>
@@ -35,11 +35,10 @@ export default defineComponent({
     PencilAltIcon,
     TrashIcon,
   },
+  emits: ['delete', 'edit'],
   setup() {
-    const recipe = inject<RecipeType>('selectedRecipe');
-
     return {
-      recipe,
+      recipe: inject<RecipeType>('selectedRecipe'),
     };
   },
 });

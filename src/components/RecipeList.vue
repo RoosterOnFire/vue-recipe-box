@@ -19,14 +19,10 @@ import { RecipeListType } from '@type';
 
 export default defineComponent({
   setup() {
-    const recipes = inject<RecipeListType>('recipes');
-
     return {
-      recipes,
+      recipes: inject<RecipeListType>('recipes'),
     };
   },
-  emits: {
-    select: null,
-  },
+  emits: ['select'],
 });
 </script>
