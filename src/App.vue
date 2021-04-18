@@ -1,18 +1,25 @@
 <template>
   <div class="flex flex-col items-center max-w-2xl h-screen p-4 mx-auto gap-4 text-2xl">
     <h1 class="font-serif italic text-6xl">Recipe box</h1>
-    <RecipeList class="p-2 bg-gray-100 border-2 border-gray-400 rounded shadow-md" @select="updateSelectedRecipe" />
+    <RecipeList
+      class="p-2 bg-gray-100 border-2 border-gray-400 rounded shadow-md"
+      :recipes="recipes"
+      :isEmpty="isRecipeListEmpty"
+      @select="updateSelectedRecipe"
+      @add="addNewRecipe"
+    />
     <RecipeView
       class="p-2 bg-gray-100 border-2 border-gray-400 rounded shadow-xl"
+      :recipe="selectedRecipe"
       @edit="toggleEdit"
       @delete="deleteRecipe"
     />
-    <RecipeEdit v-if="isEditOpen" />
+    <RecipeEdit v-if="isEditOpen" :recipe="selectedRecipe" @updateRecipe="updateRecipe" @close="toggleEdit" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, provide, reactive, computed } from 'vue';
+import { defineComponent, ref, reactive, computed } from 'vue';
 import RecipeList from '@component/RecipeList.vue';
 import RecipeView from '@component/RecipeView.vue';
 import RecipeEdit from '@component/RecipeEdit.vue';
@@ -76,6 +83,7 @@ export default defineComponent({
       } as RecipeType);
 
       updateSelectedRecipe('Recipe');
+      toggleEdit();
     };
 
     const isEditOpen = ref(false);
@@ -83,18 +91,16 @@ export default defineComponent({
       isEditOpen.value = !isEditOpen.value;
     };
 
-    provide('isRecipeListEmpty', isRecipeListEmpty);
-    provide('recipes', recipes);
-    provide('selectedRecipe', selectedRecipe);
-    provide('toggleEdit', toggleEdit);
-    provide('updateRecipe', updateRecipe);
-    provide('addNewRecipe', addNewRecipe);
-
     return {
-      isEditOpen,
-      updateSelectedRecipe,
+      addNewRecipe,
       deleteRecipe,
+      isEditOpen,
+      isRecipeListEmpty,
+      recipes,
+      selectedRecipe,
       toggleEdit,
+      updateRecipe,
+      updateSelectedRecipe,
     };
   },
 });

@@ -14,24 +14,23 @@
           <h2>Ingredients</h2>
           <input
             type="text"
-            v-for="(ingredient, index) in recipe.ingredients"
-            :key="index"
+            v-for="(ingredient, key) in recipe.ingredients"
+            :key="key"
             :value="ingredient"
-            @input="updateRecipe('ingredients', index, $event.target.value)"
+            @input.self="updateRecipe('ingredients', key, $event)"
           />
         </div>
         <div class="mx-auto">
           <h2>Directions</h2>
           <input
             type="text"
-            v-for="(direction, index) in recipe.directions"
-            :key="index"
+            v-for="(direction, key) in recipe.directions"
+            :key="key"
             :value="direction"
-            @input="updateRecipe('directions', index, $event.target.value)"
+            @input.self="updateRecipe('directions', key, $event)"
           />
         </div>
         <div class="flex justify-center">
-          <button type="button" @click="save">Save</button>
           <button type="button" @click="close">Close</button>
         </div>
       </div>
@@ -39,7 +38,7 @@
   </teleport>
 </template>
 <script lang="ts">
-import { defineComponent, inject } from 'vue';
+import { defineComponent, PropType, toRefs } from 'vue';
 import { RecipeType } from '@type';
 import XIcon from '@heroicons/vue/solid/PencilAltIcon';
 
@@ -47,12 +46,28 @@ export default defineComponent({
   components: {
     XIcon,
   },
-  setup() {
+  props: {
+    recipe: {
+      type: Object as PropType<RecipeType>,
+      required: true,
+    },
+  },
+  emits: ['updateRecipe', 'close'],
+  setup(props, context) {
+    const { recipe } = toRefs(props);
+
+    function close() {
+      context.emit('close');
+    }
+
+    function updateRecipe(action: 'ingredients' | 'directions', key: number, event: Event) {
+      event && context.emit('updateRecipe', action, key, (event.target as HTMLInputElement).value);
+    }
+
     return {
-      recipe: inject<RecipeType>('selectedRecipe'),
-      save: inject('toggleEdit'),
-      close: inject('toggleEdit'),
-      updateRecipe: inject('updateRecipe'),
+      recipe,
+      close,
+      updateRecipe,
     };
   },
 });
