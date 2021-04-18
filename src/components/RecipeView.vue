@@ -19,6 +19,10 @@
         </ul>
       </div>
     </div>
+    <div class="container" v-else-if="isRecipeListEmpty">
+      <h2>Recipe box is empty</h2>
+      <button type="button" @click="addNewRecipe">Add new recipe</button>
+    </div>
     <div class="container space-y-8" v-else>
       <h2 class="italic text-3xl">No recipe selected</h2>
     </div>
@@ -39,6 +43,8 @@ export default defineComponent({
   setup() {
     return {
       recipe: inject<RecipeType>('selectedRecipe'),
+      isRecipeListEmpty: inject<boolean>('isRecipeListEmpty'),
+      addNewRecipe: inject('addNewRecipe'),
     };
   },
 });

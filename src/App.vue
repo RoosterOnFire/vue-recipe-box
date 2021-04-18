@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, provide, reactive } from 'vue';
+import { defineComponent, ref, provide, reactive, computed } from 'vue';
 import RecipeList from '@component/RecipeList.vue';
 import RecipeView from '@component/RecipeView.vue';
 import RecipeEdit from '@component/RecipeEdit.vue';
@@ -61,15 +61,31 @@ export default defineComponent({
       selectedRecipe.value = recipes.filter((recipe) => recipe.name === name)[0];
     };
 
+    const isRecipeListEmpty = computed(() => {
+      return recipes.length === 0;
+    });
+
+    const addNewRecipe = () => {
+      recipes.push({
+        name: 'Recipe',
+        ingredients: [],
+        directions: [],
+      } as RecipeType);
+
+      updateSelectedRecipe('Recipe');
+    };
+
     const isEditOpen = ref(false);
     const toggleEdit = () => {
       isEditOpen.value = !isEditOpen.value;
     };
 
+    provide('isRecipeListEmpty', isRecipeListEmpty);
     provide('recipes', recipes);
     provide('selectedRecipe', selectedRecipe);
     provide('toggleEdit', toggleEdit);
     provide('updateRecipe', updateRecipe);
+    provide('addNewRecipe', addNewRecipe);
 
     return {
       isEditOpen,
