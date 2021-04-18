@@ -9,20 +9,37 @@
       >
         {{ recipe.name }}
       </li>
+      <li class="hover:bg-gray-300 cursor-pointer" @click.self="addNewRecipe">
+        <button class="italic" type="button" @click="addNewRecipe">Add new recipe</button>
+      </li>
     </ul>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, inject } from 'vue';
+import { defineComponent, PropType, toRefs } from 'vue';
 import { RecipeListType } from '@type';
 
 export default defineComponent({
-  setup() {
+  props: {
+    recipes: {
+      type: Array as PropType<RecipeListType>,
+      require: true,
+    },
+    isEmpty: {
+      type: Boolean,
+      require: true,
+    },
+  },
+  emits: ['add', 'select'],
+  setup(props, context) {
+    const { recipes, isEmpty } = toRefs(props);
+
     return {
-      recipes: inject<RecipeListType>('recipes'),
+      recipes,
+      isEmpty,
+      addNewRecipe: () => context.emit('add'),
     };
   },
-  emits: ['select'],
 });
 </script>

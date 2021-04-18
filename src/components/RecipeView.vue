@@ -3,8 +3,8 @@
     <div class="container space-y-8 transition duration-500 ease-in-out" v-if="recipe && recipe.name">
       <div class="flex items-center space-x-3">
         <h2 class="text-3xl">Recipe: {{ recipe.name }}</h2>
-        <PencilAltIcon class="h-8 w-8 cursor-pointer" @click="$emit('edit')" />
-        <TrashIcon class="h-8 w-8 cursor-pointer" @click="$emit('delete', recipe.name)" />
+        <PencilAltIcon class="h-8 w-8 cursor-pointer" @click="editRecipe" />
+        <TrashIcon class="h-8 w-8 cursor-pointer" @click="deleteRecipe" />
       </div>
       <div>
         <h3>Ingredients</h3>
@@ -19,10 +19,6 @@
         </ul>
       </div>
     </div>
-    <div class="container" v-else-if="isRecipeListEmpty">
-      <h2>Recipe box is empty</h2>
-      <button type="button" @click="addNewRecipe">Add new recipe</button>
-    </div>
     <div class="container space-y-8" v-else>
       <h2 class="italic text-3xl">No recipe selected</h2>
     </div>
@@ -30,7 +26,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, inject } from 'vue';
+import { defineComponent, PropType, toRefs } from 'vue';
 import { RecipeType } from '@type';
 import PencilAltIcon from '@heroicons/vue/solid/PencilAltIcon';
 import TrashIcon from '@heroicons/vue/solid/TrashIcon';
@@ -40,12 +36,20 @@ export default defineComponent({
     PencilAltIcon,
     TrashIcon,
   },
-  emits: ['delete', 'edit'],
-  setup() {
+  props: {
+    recipe: {
+      type: Object as PropType<RecipeType>,
+      required: true,
+    },
+  },
+  emits: ['edit', 'delete'],
+  setup(props, context) {
+    const { recipe } = toRefs(props);
+
     return {
-      recipe: inject<RecipeType>('selectedRecipe'),
-      isRecipeListEmpty: inject<boolean>('isRecipeListEmpty'),
-      addNewRecipe: inject('addNewRecipe'),
+      recipe,
+      editRecipe: () => context.emit('edit'),
+      deleteRecipe: () => context.emit('delete', recipe),
     };
   },
 });
