@@ -32,7 +32,8 @@
 <script lang="ts">
 import { defineComponent, inject } from 'vue';
 import { RecipeType } from '@type';
-import { PencilAltIcon, TrashIcon } from '@heroicons/vue/solid';
+import PencilAltIcon from '@heroicons/vue/solid/PencilAltIcon';
+import TrashIcon from '@heroicons/vue/solid/TrashIcon';
 
 export default defineComponent({
   components: {

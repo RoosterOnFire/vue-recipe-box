@@ -43,12 +43,15 @@ export default defineComponent({
         directions: ['directions31', 'directions32', 'directions33'],
       },
     ]);
+
     const selectedRecipe = ref<RecipeType>(recipes[0]);
+
     const updateRecipe = (action: 'ingredients' | 'directions', index: number, newValue: string) => {
       const name = selectedRecipe.value.name;
 
       recipes.filter((recipe) => recipe.name === name)[0][action][index] = newValue;
     };
+
     const deleteRecipe = () => {
       const index = recipes.indexOf(selectedRecipe.value);
 

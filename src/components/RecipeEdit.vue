@@ -41,7 +41,7 @@
 <script lang="ts">
 import { defineComponent, inject } from 'vue';
 import { RecipeType } from '@type';
-import { XIcon } from '@heroicons/vue/solid';
+import XIcon from '@heroicons/vue/solid/PencilAltIcon';
 
 export default defineComponent({
   components: {
