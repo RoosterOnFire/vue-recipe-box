@@ -1,10 +1,12 @@
 <template>
   <teleport to="body">
     <div class="fixed inset-0 z-10 flex items-center justify-center bg-gray-50 bg-opacity-50" @click.self="close">
-      <div class="container m-auto flex flex-col content-center bg-gray-300 space-y-8">
+      <div class="container m-auto p-2 flex flex-col content-center bg-gray-300 border border-gray-900 space-y-8">
+        <div class="flex justify-end">
+          <XIcon class="h-8 w-8 cursor-pointer" @click="close" />
+        </div>
         <div class="flex justify-center">
           <h1 class="text-4xl font-semibold">Edit recipe</h1>
-          <XIcon class="h-4 w-4 cursor-pointer" @click="close" />
         </div>
         <div class="mx-auto">
           <label class="block" for="recipeName">Recipe</label>
@@ -40,7 +42,7 @@
 <script lang="ts">
 import { defineComponent, PropType, toRefs } from 'vue';
 import { RecipeType } from '@type';
-import XIcon from '@heroicons/vue/solid/PencilAltIcon';
+import XIcon from '@heroicons/vue/solid/XIcon';
 
 export default defineComponent({
   components: {

@@ -7,6 +7,7 @@
       :isEmpty="isRecipeListEmpty"
       @select="updateSelectedRecipe"
       @add="addNewRecipe"
+      @delete="deleteRecipeRow"
     />
     <RecipeView
       class="p-2 bg-gray-100 border-2 border-gray-400 rounded shadow-xl"
@@ -59,17 +60,31 @@ export default defineComponent({
       recipes.filter((recipe) => recipe.name === name)[0][action][index] = newValue;
     };
 
-    const deleteRecipe = () => {
-      const index = recipes.indexOf(selectedRecipe.value);
+    const deleteRecipeRow = (target: RecipeType) => {
+      const index = recipes.indexOf(target);
 
       recipes.splice(index, 1);
 
-      selectedRecipe.value = {} as RecipeType;
+      target === selectedRecipe.value && clearSelectedRecipe();
+    };
+
+    const deleteRecipe = () => {
+      const recipe = selectedRecipe.value;
+
+      const index = recipes.indexOf(recipe);
+
+      recipes.splice(index, 1);
+
+      clearSelectedRecipe();
     };
 
     const updateSelectedRecipe = (name: string) => {
       selectedRecipe.value = recipes.filter((recipe) => recipe.name === name)[0];
     };
+
+    function clearSelectedRecipe() {
+      selectedRecipe.value = {} as RecipeType;
+    }
 
     const isRecipeListEmpty = computed(() => {
       return recipes.length === 0;
@@ -94,6 +109,7 @@ export default defineComponent({
     return {
       addNewRecipe,
       deleteRecipe,
+      deleteRecipeRow,
       isEditOpen,
       isRecipeListEmpty,
       recipes,
