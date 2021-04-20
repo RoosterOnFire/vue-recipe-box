@@ -1,40 +1,28 @@
 <template>
   <teleport to="body">
     <div class="fixed inset-0 z-10 flex items-center justify-center bg-gray-50 bg-opacity-50" @click.self="close">
-      <div class="container w-2/3 p-2 flex flex-col content-center bg-gray-300 border border-gray-900 space-y-8">
-        <div class="flex justify-end">
-          <XIcon class="h-8 w-8 cursor-pointer" @click="close" />
-        </div>
-        <div class="flex justify-center">
-          <h1 class="text-4xl font-semibold">Edit recipe</h1>
-        </div>
-        <div class="mx-auto">
-          <label class="block" for="recipeName">Recipe</label>
+      <div class="grid md:grid-cols-2 justify-items-center gap-5 p-4 bg-gray-300 border border-gray-900">
+        <XIcon class="h-8 w-8 md:col-span-2 justify-self-end cursor-pointer" @click="close" />
+        <h1 class="md:col-span-2 text-4xl font-semibold">Edit recipe</h1>
+        <div class="md:col-span-2">
+          <label class="block text-lg font-medium" for="recipeName">Recipe</label>
           <input type="text" name="recipeName" v-model="recipe.name" />
         </div>
-        <div class="mx-auto">
-          <h2>Ingredients</h2>
-          <input
-            type="text"
-            v-for="(ingredient, key) in recipe.ingredients"
-            :key="key"
-            :value="ingredient"
-            @input.self="updateRecipe('ingredients', key, $event)"
-          />
+        <div>
+          <h2 class="text-lg">Ingredients</h2>
+          <div class="list-item list-none" v-for="(ingredient, key) in recipe.ingredients" :key="key">
+            <input type="text" :value="ingredient" @input.self="updateRecipe('ingredients', key, $event)" />
+          </div>
+          <button type="button" @click="addIngredient">Add ingredient</button>
         </div>
-        <div class="mx-auto">
-          <h2>Directions</h2>
-          <input
-            type="text"
-            v-for="(direction, key) in recipe.directions"
-            :key="key"
-            :value="direction"
-            @input.self="updateRecipe('directions', key, $event)"
-          />
+        <div>
+          <h2 class="text-lg">Directions</h2>
+          <div class="list-item list-none" v-for="(direction, key) in recipe.directions" :key="key">
+            <input type="text" :value="direction" @input.self="updateRecipe('directions', key, $event)" />
+          </div>
+          <button type="button" @click="addDirection">Add direction</button>
         </div>
-        <div class="flex justify-center">
-          <button type="button" @click="close">Close</button>
-        </div>
+        <button class="md:col-span-2" type="button" @click="close">Close</button>
       </div>
     </div>
   </teleport>
@@ -42,7 +30,7 @@
 <script lang="ts">
 import { defineComponent, PropType, toRefs } from 'vue';
 import { RecipeType } from '@type';
-import XIcon from '@heroicons/vue/solid/XIcon';
+import { XIcon } from '@heroicons/vue/solid';
 
 export default defineComponent({
   components: {
@@ -66,10 +54,20 @@ export default defineComponent({
       event && context.emit('updateRecipe', action, key, (event.target as HTMLInputElement).value);
     }
 
+    function addIngredient() {
+      recipe.value.ingredients.push('');
+    }
+
+    function addDirection() {
+      recipe.value.directions.push('');
+    }
+
     return {
       recipe,
       close,
       updateRecipe,
+      addIngredient,
+      addDirection,
     };
   },
 });
