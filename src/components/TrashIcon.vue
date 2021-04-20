@@ -5,14 +5,17 @@
 <script lang="ts">
 import { defineComponent, inject } from 'vue';
 import { TrashIcon } from '@heroicons/vue/solid';
+import { RecipeType } from '@type*';
 
 export default defineComponent({
   components: { TrashIcon },
   props: ['recipe'],
   setup(props) {
+    const trash = inject<(recipe: RecipeType) => void>('deleteRecipe', () => {});
+
     return {
       recipe: props.recipe,
-      trash: inject('deleteRecipe'),
+      trash,
     };
   },
 });
