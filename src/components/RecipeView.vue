@@ -4,7 +4,7 @@
       <div class="flex items-center space-x-3">
         <h2 class="text-3xl">Recipe: {{ recipe.name }}</h2>
         <PencilAltIcon class="h-8 w-8 cursor-pointer" @click="editRecipe" />
-        <TrashIcon class="h-8 w-8 cursor-pointer" @click="deleteRecipe" />
+        <TrashIcon />
       </div>
       <div>
         <h3>Ingredients</h3>
@@ -29,7 +29,7 @@
 import { defineComponent, PropType, toRefs } from 'vue';
 import { RecipeType } from '@type';
 import PencilAltIcon from '@heroicons/vue/solid/PencilAltIcon';
-import TrashIcon from '@heroicons/vue/solid/TrashIcon';
+import TrashIcon from './TrashIcon.vue';
 
 export default defineComponent({
   components: {
@@ -49,7 +49,6 @@ export default defineComponent({
     return {
       recipe,
       editRecipe: () => context.emit('edit'),
-      deleteRecipe: () => context.emit('delete', recipe),
     };
   },
 });
