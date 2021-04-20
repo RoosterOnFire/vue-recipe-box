@@ -28,7 +28,7 @@
 <script lang="ts">
 import { defineComponent, PropType, toRefs } from 'vue';
 import { RecipeType } from '@type';
-import PencilAltIcon from '@heroicons/vue/solid/PencilAltIcon';
+import { PencilAltIcon } from '@heroicons/vue/solid';
 import TrashIcon from './TrashIcon.vue';
 
 export default defineComponent({

@@ -4,7 +4,7 @@
 
 <script lang="ts">
 import { defineComponent, inject } from 'vue';
-import TrashIcon from '@heroicons/vue/solid/TrashIcon';
+import { TrashIcon } from '@heroicons/vue/solid';
 
 export default defineComponent({
   components: { TrashIcon },
