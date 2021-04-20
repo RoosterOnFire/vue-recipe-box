@@ -7,20 +7,18 @@
       :isEmpty="isRecipeListEmpty"
       @select="updateSelectedRecipe"
       @add="addNewRecipe"
-      @delete="deleteRecipeRow"
     />
     <RecipeView
       class="p-2 bg-gray-100 border-2 border-gray-400 rounded shadow-xl"
       :recipe="selectedRecipe"
       @edit="toggleEdit"
-      @delete="deleteRecipe"
     />
     <RecipeEdit v-if="isEditOpen" :recipe="selectedRecipe" @updateRecipe="updateRecipe" @close="toggleEdit" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, reactive, computed } from 'vue';
+import { defineComponent, ref, reactive, computed, provide } from 'vue';
 import RecipeList from '@component/RecipeList.vue';
 import RecipeView from '@component/RecipeView.vue';
 import RecipeEdit from '@component/RecipeEdit.vue';
@@ -52,31 +50,20 @@ export default defineComponent({
       },
     ]);
 
-    const selectedRecipe = ref<RecipeType>(recipes[0]);
+    const selectedRecipe = ref<RecipeType>({} as RecipeType);
 
     const updateRecipe = (action: 'ingredients' | 'directions', index: number, newValue: string) => {
-      const name = selectedRecipe.value.name;
-
-      recipes.filter((recipe) => recipe.name === name)[0][action][index] = newValue;
+      recipes.filter((recipe) => recipe.name === selectedRecipe.value.name)[0][action][index] = newValue;
     };
 
-    const deleteRecipeRow = (target: RecipeType) => {
-      const index = recipes.indexOf(target);
-
-      recipes.splice(index, 1);
-
-      target === selectedRecipe.value && clearSelectedRecipe();
-    };
-
-    const deleteRecipe = () => {
-      const recipe = selectedRecipe.value;
-
-      const index = recipes.indexOf(recipe);
+    const deleteRecipe = (target: RecipeType | undefined = undefined) => {
+      const index = recipes.indexOf(target || selectedRecipe.value);
 
       recipes.splice(index, 1);
 
       clearSelectedRecipe();
     };
+    provide('deleteRecipe', deleteRecipe);
 
     const updateSelectedRecipe = (name: string) => {
       selectedRecipe.value = recipes.filter((recipe) => recipe.name === name)[0];
@@ -98,6 +85,7 @@ export default defineComponent({
       } as RecipeType);
 
       updateSelectedRecipe('Recipe');
+
       toggleEdit();
     };
 
@@ -108,8 +96,6 @@ export default defineComponent({
 
     return {
       addNewRecipe,
-      deleteRecipe,
-      deleteRecipeRow,
       isEditOpen,
       isRecipeListEmpty,
       recipes,
