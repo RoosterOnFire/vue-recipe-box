@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0] - 2021-04-20
+
+### Added
+
+- temporary heroicons types fix
+- deploy command to package.json
+
+### Changed
+
+- moved TrashIcon to seperate component
+- replaced flex with grid in RecipeEdit
+- imporoved design in RecipeEdit
+
+### Removed
+
+- deleteRecipeRow
+
 ## [0.2.0] - 2021-04-18
 
 ### Added

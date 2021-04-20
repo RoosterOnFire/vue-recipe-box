@@ -1,10 +1,11 @@
 {
-  "name": "vue-recipe-box",
-  "version": "0.0.0",
+  "name": "vue-recipe-box-v2",
+  "version": "0.2.0",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "deploy": "sh deploy.sh"
   },
   "dependencies": {
     "@heroicons/vue": "^1.0.1",
