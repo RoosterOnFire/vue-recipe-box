@@ -1,7 +1,7 @@
 <template>
   <teleport to="body">
     <div class="fixed inset-0 z-10 flex items-center justify-center bg-gray-50 bg-opacity-50" @click.self="close">
-      <div class="container m-auto p-2 flex flex-col content-center bg-gray-300 border border-gray-900 space-y-8">
+      <div class="container w-2/3 p-2 flex flex-col content-center bg-gray-300 border border-gray-900 space-y-8">
         <div class="flex justify-end">
           <XIcon class="h-8 w-8 cursor-pointer" @click="close" />
         </div>
