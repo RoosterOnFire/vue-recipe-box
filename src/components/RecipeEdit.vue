@@ -31,9 +31,11 @@
 import { defineComponent, PropType, toRefs } from 'vue';
 import { RecipeType } from '@type';
 import { XIcon } from '@heroicons/vue/solid';
+import TrashIcon from './Trash/TrashRecipe.vue';
 
 export default defineComponent({
   components: {
+    TrashIcon,
     XIcon,
   },
   props: {

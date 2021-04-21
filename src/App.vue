@@ -52,18 +52,23 @@ export default defineComponent({
 
     const selectedRecipe = ref<RecipeType>({} as RecipeType);
 
+    const isRecipeListEmpty = computed(() => {
+      return recipes.length === 0;
+    });
+
+    const isEditOpen = ref(false);
+
     function updateRecipe(action: 'ingredients' | 'directions', index: number, newValue: string) {
       recipes.filter((recipe) => recipe.name === selectedRecipe.value.name)[0][action][index] = newValue;
     }
 
-    function deleteRecipe(target: RecipeType | undefined = undefined) {
+    function trashRecipe(target: RecipeType | undefined = undefined) {
       const index = recipes.indexOf(target || selectedRecipe.value);
 
       recipes.splice(index, 1);
 
       clearSelectedRecipe();
     }
-    provide('deleteRecipe', deleteRecipe);
 
     function updateSelectedRecipe(name: string) {
       selectedRecipe.value = recipes.filter((recipe) => recipe.name === name)[0];
@@ -72,10 +77,6 @@ export default defineComponent({
     function clearSelectedRecipe() {
       selectedRecipe.value = {} as RecipeType;
     }
-
-    const isRecipeListEmpty = computed(() => {
-      return recipes.length === 0;
-    });
 
     function addNewRecipe() {
       recipes.push({
@@ -89,10 +90,11 @@ export default defineComponent({
       toggleEdit();
     }
 
-    const isEditOpen = ref(false);
     function toggleEdit() {
       isEditOpen.value = !isEditOpen.value;
     }
+
+    provide('trashRecipe', trashRecipe);
 
     return {
       addNewRecipe,

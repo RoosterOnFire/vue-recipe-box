@@ -1,5 +1,5 @@
 <template>
-  <TrashIcon class="h-8 w-8 cursor-pointer" @click="trash(recipe)" />
+  <TrashIcon class="h-8 w-8 cursor-pointer" @click="" />
 </template>
 
 <script lang="ts">
@@ -9,13 +9,13 @@ import { RecipeType } from '@type*';
 
 export default defineComponent({
   components: { TrashIcon },
-  props: ['recipe'],
+  props: ['recipe', 'key'],
   setup(props) {
-    const trash = inject<(recipe: RecipeType) => void>('deleteRecipe', () => {});
+    // const trash = inject<(recipe: RecipeType) => void>('trashRecipe', () => {});
 
     return {
       recipe: props.recipe,
-      trash,
+      //   trash,
     };
   },
 });
