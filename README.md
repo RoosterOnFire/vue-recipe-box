@@ -2,7 +2,7 @@
 
 Simple app for managing recipes. Based on freeCodeCamp Take Home Project: [Build a recipe box](https://www.freecodecamp.org/learn/coding-interview-prep/take-home-projects/build-a-recipe-box)
 
-Try it out: [Vue Recipe Box](https://martinkukli.github.io/vue-recipe-box-v2/)
+Try it out: [Vue Recipe Box](https://martinkukli.github.io/vue-recipe-box/)
 
 ## Features
 
