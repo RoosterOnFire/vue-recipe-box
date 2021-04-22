@@ -17,8 +17,8 @@
         </div>
         <div>
           <h2 class="text-lg">Directions</h2>
-          <div class="list-item list-none" v-for="(direction, key) in recipe.directions" :key="key">
-            <input type="text" :value="direction" @input.self="updateRecipe('directions', key, $event)" />
+          <div class="list-item list-none" v-for="(direction, index) in recipe.directions" :key="index">
+            <input type="text" :value="direction" @input.self="updateRecipe('directions', index, $event)" />
           </div>
           <button type="button" @click="addDirection">Add direction</button>
         </div>
@@ -27,13 +27,16 @@
     </div>
   </teleport>
 </template>
+
 <script lang="ts">
 import { defineComponent, PropType, toRefs } from 'vue';
-import { RecipeType } from '@type';
 import { XIcon } from '@heroicons/vue/solid';
+import TrashRecipe from './Trash/TrashRecipe.vue';
+import { RecipeType } from '@type';
 
 export default defineComponent({
   components: {
+    TrashRecipe,
     XIcon,
   },
   props: {

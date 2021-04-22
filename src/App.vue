@@ -6,7 +6,7 @@
       :recipes="recipes"
       :isEmpty="isRecipeListEmpty"
       @select="updateSelectedRecipe"
-      @add="addNewRecipe"
+      @add="addRecipe"
     />
     <RecipeView
       class="p-2 bg-gray-100 border-2 border-gray-400 rounded shadow-xl"
@@ -18,11 +18,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, reactive, computed, provide } from 'vue';
+import { defineComponent, ref, provide } from 'vue';
 import RecipeList from '@component/RecipeList.vue';
 import RecipeView from '@component/RecipeView.vue';
 import RecipeEdit from '@component/RecipeEdit.vue';
-import { RecipeListType, RecipeType } from '@type';
+import useRecipes from './composables/useRecipes';
 
 export default defineComponent({
   name: 'App',
@@ -32,70 +32,25 @@ export default defineComponent({
     RecipeEdit,
   },
   setup() {
-    const recipes = reactive<RecipeListType>([
-      {
-        name: 'RecipeName1',
-        ingredients: ['ingredient11'],
-        directions: ['directions11'],
-      },
-      {
-        name: 'RecipeName2',
-        ingredients: ['ingredient21', 'ingredient22'],
-        directions: ['directions21', 'directions22'],
-      },
-      {
-        name: 'RecipeName3',
-        ingredients: ['ingredient31', 'ingredient32', 'ingredient33'],
-        directions: ['directions31', 'directions32', 'directions33'],
-      },
-    ]);
-
-    const selectedRecipe = ref<RecipeType>({} as RecipeType);
-
-    function updateRecipe(action: 'ingredients' | 'directions', index: number, newValue: string) {
-      recipes.filter((recipe) => recipe.name === selectedRecipe.value.name)[0][action][index] = newValue;
-    }
-
-    function deleteRecipe(target: RecipeType | undefined = undefined) {
-      const index = recipes.indexOf(target || selectedRecipe.value);
-
-      recipes.splice(index, 1);
-
-      clearSelectedRecipe();
-    }
-    provide('deleteRecipe', deleteRecipe);
-
-    function updateSelectedRecipe(name: string) {
-      selectedRecipe.value = recipes.filter((recipe) => recipe.name === name)[0];
-    }
-
-    function clearSelectedRecipe() {
-      selectedRecipe.value = {} as RecipeType;
-    }
-
-    const isRecipeListEmpty = computed(() => {
-      return recipes.length === 0;
-    });
-
-    function addNewRecipe() {
-      recipes.push({
-        name: 'Recipe',
-        ingredients: [],
-        directions: [],
-      } as RecipeType);
-
-      updateSelectedRecipe('Recipe');
-
-      toggleEdit();
-    }
+    const {
+      recipes,
+      selectedRecipe,
+      isRecipeListEmpty,
+      addRecipe,
+      updateRecipe,
+      updateSelectedRecipe,
+      trashRecipe,
+    } = useRecipes();
 
     const isEditOpen = ref(false);
     function toggleEdit() {
       isEditOpen.value = !isEditOpen.value;
     }
 
+    provide('trashRecipe', trashRecipe);
+
     return {
-      addNewRecipe,
+      addRecipe,
       isEditOpen,
       isRecipeListEmpty,
       recipes,
