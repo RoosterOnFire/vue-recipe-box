@@ -11,12 +11,13 @@ Try it out: [Vue Recipe Box](https://martinkukli.github.io/vue-recipe-box/)
 
 ## Planned features
 
-- Edit recipes inline instead of modal
-- Change ingredients and directions list order with drag and drop
+- Edit recipes inline instead of inside a modal
+- Order ingredients and directions with drag and drop
 - Save recipes to local storage
+- Fancy animation
 
 ## Tools
 
-- Vue3 + TypeScript
+- Vue 3 + TypeScript
 - Tailwind css
 - Vite
