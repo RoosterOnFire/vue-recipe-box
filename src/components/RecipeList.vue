@@ -18,9 +18,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, toRefs, inject, PropType } from 'vue';
-import TrashRecipe from './Trash/TrashRecipe.vue';
-import { RecipeListType } from '@type';
+import { defineComponent, toRefs, PropType } from "vue";
+import TrashRecipe from "./Trash/TrashRecipe.vue";
+import { RecipeListType } from "@type";
 
 export default defineComponent({
   components: {
@@ -36,14 +36,14 @@ export default defineComponent({
       require: true,
     },
   },
-  emits: ['add', 'select', 'delete'],
+  emits: ["add", "select", "delete"],
   setup(props, context) {
     const { recipes, isEmpty } = toRefs(props);
 
     return {
       recipes,
       isEmpty,
-      addNewRecipe: () => context.emit('add'),
+      addNewRecipe: () => context.emit("add"),
     };
   },
 });

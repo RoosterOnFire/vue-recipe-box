@@ -18,36 +18,26 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, provide } from 'vue';
-import RecipeList from '@component/RecipeList.vue';
-import RecipeView from '@component/RecipeView.vue';
-import RecipeEdit from '@component/RecipeEdit.vue';
-import useRecipes from './composables/useRecipes';
+import { defineComponent, ref } from "vue";
+import RecipeList from "@component/RecipeList.vue";
+import RecipeView from "@component/RecipeView.vue";
+import RecipeEdit from "@component/RecipeEdit.vue";
+import useRecipes from "@composable/useRecipes";
 
 export default defineComponent({
-  name: 'App',
+  name: "App",
   components: {
     RecipeList,
     RecipeView,
     RecipeEdit,
   },
   setup() {
-    const {
-      recipes,
-      selectedRecipe,
-      isRecipeListEmpty,
-      addRecipe,
-      updateRecipe,
-      updateSelectedRecipe,
-      trashRecipe,
-    } = useRecipes();
+    const { recipes, selectedRecipe, isRecipeListEmpty, addRecipe, updateRecipe, updateSelectedRecipe } = useRecipes();
 
     const isEditOpen = ref(false);
     function toggleEdit() {
       isEditOpen.value = !isEditOpen.value;
     }
-
-    provide('trashRecipe', trashRecipe);
 
     return {
       addRecipe,

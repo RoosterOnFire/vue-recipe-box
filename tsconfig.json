@@ -12,6 +12,7 @@
     "types": ["vite/client"],
     "paths": {
       "@component*": ["./src/components/"],
+      "@composables*": ["./src/composables/"],
       "@type*": ["./src/types/type.ts"]
     }
   },

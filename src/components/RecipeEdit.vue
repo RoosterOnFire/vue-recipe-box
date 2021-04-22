@@ -10,15 +10,17 @@
         </div>
         <div>
           <h2 class="text-lg">Ingredients</h2>
-          <div class="list-item list-none" v-for="(ingredient, key) in recipe.ingredients" :key="key">
-            <input type="text" :value="ingredient" @input.self="updateRecipe('ingredients', key, $event)" />
+          <div class="list-item list-none" v-for="(ingredient, index) in recipe.ingredients" :key="index">
+            <input type="text" :value="ingredient" @input.self="updateIngredients(index, $event)" />
+            <TrashIngredient :index="index" />
           </div>
           <button type="button" @click="addIngredient">Add ingredient</button>
         </div>
         <div>
           <h2 class="text-lg">Directions</h2>
           <div class="list-item list-none" v-for="(direction, index) in recipe.directions" :key="index">
-            <input type="text" :value="direction" @input.self="updateRecipe('directions', index, $event)" />
+            <input type="text" :value="direction" @input.self="updateDirection(index, $event)" />
+            <TrashDirection :index="index" />
           </div>
           <button type="button" @click="addDirection">Add direction</button>
         </div>
@@ -29,14 +31,19 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, toRefs } from 'vue';
-import { XIcon } from '@heroicons/vue/solid';
-import TrashRecipe from './Trash/TrashRecipe.vue';
-import { RecipeType } from '@type';
+import { defineComponent, PropType, toRefs } from "vue";
+import { XIcon } from "@heroicons/vue/solid";
+import TrashRecipe from "@component/Trash/TrashRecipe.vue";
+import TrashIngredient from "@component/Trash/TrashIngredient.vue";
+import TrashDirection from "@component/Trash/TrashDirection.vue";
+import { RecipeType } from "@type";
+import useRecipes from "../composables/useRecipes";
 
 export default defineComponent({
   components: {
     TrashRecipe,
+    TrashIngredient,
+    TrashDirection,
     XIcon,
   },
   props: {
@@ -45,32 +52,35 @@ export default defineComponent({
       required: true,
     },
   },
-  emits: ['updateRecipe', 'close'],
+  emits: ["updateRecipe", "close"],
   setup(props, context) {
     const { recipe } = toRefs(props);
 
     function close() {
-      context.emit('close');
+      context.emit("close");
     }
 
-    function updateRecipe(action: 'ingredients' | 'directions', key: number, event: Event) {
-      event && context.emit('updateRecipe', action, key, (event.target as HTMLInputElement).value);
+    function updateRecipe(action: "ingredients" | "directions", key: number, target: EventTarget | null) {
+      target && context.emit("updateRecipe", action, key, (target as HTMLInputElement).value);
     }
 
-    function addIngredient() {
-      recipe.value.ingredients.push('');
+    const { addIngredient, addDirection } = useRecipes();
+
+    function updateIngredients(key: number, event: Event) {
+      updateRecipe("ingredients", key, event.target);
     }
 
-    function addDirection() {
-      recipe.value.directions.push('');
+    function updateDirection(key: number, event: Event) {
+      updateRecipe("directions", key, event.target);
     }
 
     return {
       recipe,
       close,
-      updateRecipe,
       addIngredient,
       addDirection,
+      updateIngredients,
+      updateDirection,
     };
   },
 });
