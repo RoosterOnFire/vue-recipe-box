@@ -31,13 +31,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, toRefs } from "vue";
-import { XIcon } from "@heroicons/vue/solid";
-import TrashRecipe from "@component/Trash/TrashRecipe.vue";
-import TrashIngredient from "@component/Trash/TrashIngredient.vue";
-import TrashDirection from "@component/Trash/TrashDirection.vue";
-import { RecipeType } from "@type";
-import useRecipes from "../composables/useRecipes";
+import { defineComponent, PropType, toRefs } from 'vue';
+import { XIcon } from '@heroicons/vue/solid';
+import TrashRecipe from '@component/Trash/TrashRecipe.vue';
+import TrashIngredient from '@component/Trash/TrashIngredient.vue';
+import TrashDirection from '@component/Trash/TrashDirection.vue';
+import { RecipeType } from '@type';
+import useRecipes from '../composables/useRecipes';
 
 export default defineComponent({
   components: {
@@ -52,26 +52,26 @@ export default defineComponent({
       required: true,
     },
   },
-  emits: ["updateRecipe", "close"],
+  emits: ['updateRecipe', 'close'],
   setup(props, context) {
     const { recipe } = toRefs(props);
 
     function close() {
-      context.emit("close");
+      context.emit('close');
     }
 
-    function updateRecipe(action: "ingredients" | "directions", key: number, target: EventTarget | null) {
-      target && context.emit("updateRecipe", action, key, (target as HTMLInputElement).value);
+    function updateRecipe(action: 'ingredients' | 'directions', key: number, target: EventTarget | null) {
+      target && context.emit('updateRecipe', action, key, (target as HTMLInputElement).value);
     }
 
     const { addIngredient, addDirection } = useRecipes();
 
     function updateIngredients(key: number, event: Event) {
-      updateRecipe("ingredients", key, event.target);
+      updateRecipe('ingredients', key, event.target);
     }
 
     function updateDirection(key: number, event: Event) {
-      updateRecipe("directions", key, event.target);
+      updateRecipe('directions', key, event.target);
     }
 
     return {

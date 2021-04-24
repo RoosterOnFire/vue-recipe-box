@@ -18,14 +18,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
-import RecipeList from "@component/RecipeList.vue";
-import RecipeView from "@component/RecipeView.vue";
-import RecipeEdit from "@component/RecipeEdit.vue";
-import useRecipes from "@composable/useRecipes";
+import { defineComponent, ref } from 'vue';
+import RecipeList from '@component/RecipeList.vue';
+import RecipeView from '@component/RecipeView.vue';
+import RecipeEdit from '@component/RecipeEdit.vue';
+import useRecipes from '@composable/useRecipes';
 
 export default defineComponent({
-  name: "App",
+  name: 'App',
   components: {
     RecipeList,
     RecipeView,

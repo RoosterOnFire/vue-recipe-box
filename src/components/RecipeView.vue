@@ -26,10 +26,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, toRefs } from "vue";
-import { RecipeType } from "@type";
-import { PencilAltIcon } from "@heroicons/vue/solid";
-import TrashRecipe from "./Trash/TrashRecipe.vue";
+import { defineComponent, PropType, toRefs } from 'vue';
+import { RecipeType } from '@type';
+import { PencilAltIcon } from '@heroicons/vue/solid';
+import TrashRecipe from './Trash/TrashRecipe.vue';
 
 export default defineComponent({
   components: {
@@ -42,13 +42,13 @@ export default defineComponent({
       required: true,
     },
   },
-  emits: ["edit", "delete"],
+  emits: ['edit', 'delete'],
   setup(props, context) {
     const { recipe } = toRefs(props);
 
     return {
       recipe,
-      editRecipe: () => context.emit("edit"),
+      editRecipe: () => context.emit('edit'),
     };
   },
 });
