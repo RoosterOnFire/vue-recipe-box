@@ -4,19 +4,17 @@
       class="h-8 w-8 mx-auto mb-2 cursor-pointer"
       @click="addNewRecipe"
     />
-    <ul class="list-none list-inside">
-      <transition-group name="list" tag="li">
-        <li
-          class="flex justify-between hover:bg-gray-300 cursor-pointer"
-          v-for="recipe in recipes"
-          :key="recipe.name"
-          @click.self="$emit('select', recipe.name)"
-        >
-          {{ recipe.name }}
-          <trash-recipe :recipe="recipe" />
-        </li>
-      </transition-group>
-    </ul>
+    <transition-group name="list" tag="ul" class="list-none list-inside">
+      <li
+        class="flex justify-between hover:bg-gray-300 cursor-pointer"
+        v-for="recipe in recipes"
+        :key="recipe.name"
+        @click.self="$emit('select', recipe.name)"
+      >
+        {{ recipe.name }}
+        <trash-recipe :recipe="recipe" />
+      </li>
+    </transition-group>
   </div>
 </template>
 
