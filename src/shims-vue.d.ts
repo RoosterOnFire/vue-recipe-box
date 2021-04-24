@@ -4,14 +4,10 @@ declare module '*.vue' {
   export default component;
 }
 
-declare module '@composable/*' {
-  const composable: any;
-  export default composable;
-}
-
 declare module '@heroicons/vue/*' {
-  const content: any;
-  export default content;
+  import { DefineComponent } from 'vue';
+  const icon: DefineComponent<{}, {}, any>;
+  export default icon;
 }
 
 declare module '@heroicons/vue/solid' {

@@ -71,7 +71,7 @@ function clearSelectedRecipe(): void {
   selectedRecipe.value = {} as RecipeType;
 }
 
-export default function useRecipes(): any {
+export default function useRecipes() {
   return {
     recipes,
     selectedRecipe,
