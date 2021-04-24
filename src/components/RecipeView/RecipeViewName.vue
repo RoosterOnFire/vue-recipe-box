@@ -1,30 +1,41 @@
 <template>
   <div class="flex items-center space-x-3">
-    <h2 class="text-3xl">Recipe: {{ name }}</h2>
-    <pencil-alt-icon class="h-8 w-8 cursor-pointer" @click="edit" />
-    <trash-recipe />
+    <template v-if="mode">
+      Recipe:
+      <input type="text" name="recipeName" ref="recipeNameInput" :value="name" @input="updateName" />
+    </template>
+    <template v-else>
+      <h2 class="text-3xl">Recipe: {{ name }}</h2>
+    </template>
+    <slot />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, toRefs } from 'vue';
-import { PencilAltIcon } from '@heroicons/vue/solid';
-import TrashRecipe from '../Trash/TrashRecipe.vue';
+import { defineComponent, toRefs, ref } from 'vue';
 
 export default defineComponent({
-  components: { TrashRecipe, PencilAltIcon },
   props: {
     name: {
       type: String,
       required: true,
     },
+    mode: {
+      type: Boolean,
+      required: false,
+    },
   },
   setup(props, { emit }) {
-    const { name } = toRefs(props);
+    const { name, mode } = toRefs(props);
+
+    function updateName(event: Event) {
+      event && event.target && emit('update:name', (event.target as HTMLInputElement).value);
+    }
 
     return {
       name,
-      edit: () => emit('edit'),
+      mode,
+      updateName,
     };
   },
 });
