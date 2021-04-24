@@ -1,7 +1,7 @@
 <template>
-  <div class="flex items-center space-x-3">
+  <div class="flex space-x-3">
     <template v-if="mode">
-      Recipe:
+      <label for="recipeName">Recipe:</label>
       <input
         type="text"
         name="recipeName"
@@ -16,7 +16,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, toRefs, ref } from 'vue';
+import { defineComponent, toRefs } from 'vue';
 
 export default defineComponent({
   props: {

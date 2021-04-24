@@ -1,9 +1,9 @@
 <template>
   <div>
-    <h3>{{ header }}</h3>
+    <h3 class="mb-4">{{ header }}</h3>
     <ul class="list-disc list-inside">
       <template v-for="(value, index) in items" :key="index">
-        <li v-if="mode" class="pl-4 flex">
+        <li v-if="mode" class="pl-4 flex space-x-3">
           <input
             type="text"
             :value="value"
@@ -13,19 +13,22 @@
         </li>
         <li v-else class="pl-4">{{ value }}</li>
       </template>
-      <button v-if="mode" type="button" @click="() => addValue()">
-        {{ buttonAddText }}
-      </button>
+      <plus-circle-icon
+        v-if="mode"
+        class="h-8 w-8 mx-auto mt-4 cursor-pointer"
+        @click="() => addValue()"
+      />
     </ul>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType, toRefs } from 'vue';
+import { PlusCircleIcon } from '@heroicons/vue/solid';
 import TrashValue from '@component/Trash/TrashValue.vue';
 
 export default defineComponent({
-  components: { TrashValue },
+  components: { PlusCircleIcon, TrashValue },
   props: {
     type: {
       type: String as PropType<'ingredient' | 'direction'>,
@@ -37,10 +40,6 @@ export default defineComponent({
     },
     items: {
       type: Array as PropType<string[]>,
-      required: true,
-    },
-    buttonAddText: {
-      type: String,
       required: true,
     },
     mode: {
@@ -58,21 +57,12 @@ export default defineComponent({
   },
   emits: ['updateRecipe'],
   setup(props) {
-    const {
-      type,
-      header,
-      items,
-      mode,
-      buttonAddText,
-      addValue,
-      editValue,
-    } = toRefs(props);
+    const { type, header, items, mode, addValue, editValue } = toRefs(props);
 
     return {
       type,
       header,
       items: items || [],
-      buttonAddText,
       mode,
       addValue,
       editValue,

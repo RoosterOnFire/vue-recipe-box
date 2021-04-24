@@ -10,22 +10,23 @@
         {{ recipe.name }}
         <trash-recipe :recipe="recipe" />
       </li>
-      <li class="hover:bg-gray-300 cursor-pointer" @click.self="addNewRecipe">
-        <button class="italic" type="button" @click="addNewRecipe">
-          Add new recipe
-        </button>
-      </li>
     </ul>
+    <plus-circle-icon
+      class="h-8 w-8 mx-auto mt-4 cursor-pointer"
+      @click="addNewRecipe"
+    />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, toRefs, PropType } from 'vue';
 import TrashRecipe from './Trash/TrashRecipe.vue';
+import { PlusCircleIcon } from '@heroicons/vue/solid';
 import { RecipeListType } from '@type';
 
 export default defineComponent({
   components: {
+    PlusCircleIcon,
     TrashRecipe,
   },
   props: {
