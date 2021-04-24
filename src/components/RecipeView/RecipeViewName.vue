@@ -10,9 +10,7 @@
         @input="updateName"
       />
     </template>
-    <template v-else>
-      <h2 class="text-3xl">Recipe: {{ name }}</h2>
-    </template>
+    <h2 v-else class="text-3xl">Recipe: {{ name }}</h2>
     <slot />
   </div>
 </template>
