@@ -5,12 +5,14 @@
       <input type="text" :value="value" @input.self="editValue(index, $event)" />
       <slot :index="index" />
     </div>
-    <button type="button" @click="addValue">{{ buttonAddText }}</button>
+    <button type="button" @click="() => addValue">{{ buttonAddText }}</button>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType, toRefs } from 'vue';
+
+type ListClick = (key: number, event: Event) => void;
 
 export default defineComponent({
   props: {
@@ -26,11 +28,11 @@ export default defineComponent({
       required: true,
     },
     addValue: {
-      type: Function,
+      type: Function as PropType<ListClick>,
       required: true,
     },
     editValue: {
-      type: Function,
+      type: Function as PropType<ListClick>,
       required: true,
     },
   },

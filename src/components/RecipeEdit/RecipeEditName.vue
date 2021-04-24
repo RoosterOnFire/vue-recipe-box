@@ -1,7 +1,7 @@
 <template>
   <div class="md:col-span-2">
     <label class="block text-lg font-medium" for="recipeName">Recipe</label>
-    <input type="text" name="recipeName" :value="name" @input="$emit('update:name', $event.target.value)" />
+    <input type="text" name="recipeName" :value="name" @input="$emit('update:name', $event)" />
   </div>
 </template>
 <script lang="ts">
