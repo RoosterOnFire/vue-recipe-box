@@ -12,6 +12,6 @@
   "javascript.preferences.quoteStyle": "single",
   "typescript.preferences.quoteStyle": "single",
   "vetur.experimental.templateInterpolationService": true,
-  "vetur.completion.autoImport": false,
+  "vetur.completion.autoImport": true,
   "vetur.validation.templateProps": true
 }
