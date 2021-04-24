@@ -5,7 +5,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { TrashIcon } from '@heroicons/vue/solid';
-import useRecipes from '@composable/useRecipes';
+import useRecipes from '../../composables/useRecipes';
 
 export default defineComponent({
   components: { TrashIcon },
