@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.0] - 2021-04-24
+
+### Added
+
+- ListTransition component
+
+### Changed
+
+- Replaced button with text with icons
+
 ## [0.5.0] - 2021-04-24
 
 ### Changed
