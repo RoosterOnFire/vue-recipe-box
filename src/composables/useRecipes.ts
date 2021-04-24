@@ -35,8 +35,14 @@ function addRecipe() {
   updateSelectedRecipe('Recipe');
 }
 
-function updateRecipe(action: 'ingredients' | 'directions', index: number, newValue: string): void {
-  recipes.filter((recipe) => recipe.name === selectedRecipe.value.name)[0][action][index] = newValue;
+function updateRecipe(
+  action: 'ingredients' | 'directions',
+  index: number,
+  newValue: string,
+): void {
+  recipes.filter((recipe) => recipe.name === selectedRecipe.value.name)[0][
+    action
+  ][index] = newValue;
 }
 
 function addIngredient() {
