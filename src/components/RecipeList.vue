@@ -1,6 +1,10 @@
 <template>
   <div class="container">
-    <ul class="list-none list-inside">
+    <plus-circle-icon
+      class="h-8 w-8 mx-auto mb-2 cursor-pointer"
+      @click="addNewRecipe"
+    />
+    <list-transition>
       <li
         class="flex justify-between hover:bg-gray-300 cursor-pointer"
         v-for="recipe in recipes"
@@ -10,22 +14,21 @@
         {{ recipe.name }}
         <trash-recipe :recipe="recipe" />
       </li>
-      <li class="hover:bg-gray-300 cursor-pointer" @click.self="addNewRecipe">
-        <button class="italic" type="button" @click="addNewRecipe">
-          Add new recipe
-        </button>
-      </li>
-    </ul>
+    </list-transition>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, toRefs, PropType } from 'vue';
-import TrashRecipe from './Trash/TrashRecipe.vue';
+import { PlusCircleIcon } from '@heroicons/vue/solid';
 import { RecipeListType } from '@type';
+import ListTransition from './ListTransition.vue';
+import TrashRecipe from './Trash/TrashRecipe.vue';
 
 export default defineComponent({
   components: {
+    ListTransition,
+    PlusCircleIcon,
     TrashRecipe,
   },
   props: {

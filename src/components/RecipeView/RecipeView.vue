@@ -2,15 +2,18 @@
   <transition name="fade" mode="out-in">
     <div
       v-if="recipe && recipe.name"
-      class="container space-y-8 transition duration-500 ease-in-out"
+      class="grid grid-cols-1 md:grid-cols-2 w-full space-y-4"
     >
-      <recipe-view-name v-model:name="recipe.name" :mode="mode">
+      <recipe-view-name
+        v-model:name="recipe.name"
+        :mode="mode"
+        class="md:col-span-2"
+      >
         <pencil-alt-icon class="h-8 w-8 cursor-pointer" @click="switchEdit" />
         <trash-recipe />
       </recipe-view-name>
       <recipe-view-list
         header="Ingredients"
-        button-add-text="Add ingredient"
         type="ingredient"
         :items="recipe.ingredients"
         :mode="mode"
@@ -19,7 +22,6 @@
       />
       <recipe-view-list
         header="Directions"
-        button-add-text="Add direction"
         type="direction"
         :items="recipe.directions"
         :mode="mode"
