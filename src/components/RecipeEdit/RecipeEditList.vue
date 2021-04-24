@@ -12,8 +12,6 @@
 <script lang="ts">
 import { defineComponent, PropType, toRefs } from 'vue';
 
-type ListClick = (key: number, event: Event) => void;
-
 export default defineComponent({
   props: {
     header: {
@@ -28,11 +26,11 @@ export default defineComponent({
       required: true,
     },
     addValue: {
-      type: Function as PropType<ListClick>,
+      type: Function as PropType<(key: number, event: Event) => void>,
       required: true,
     },
     editValue: {
-      type: Function as PropType<ListClick>,
+      type: Function as PropType<(key: number, event: Event) => void>,
       required: true,
     },
   },
