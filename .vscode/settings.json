@@ -8,8 +8,10 @@
   "prettier.printWidth": 120,
   "prettier.tabWidth": 2,
   "tailwindCSS.emmetCompletions": true,
-  "vetur.validation.templateProps": true,
   "prettier.singleQuote": true,
   "javascript.preferences.quoteStyle": "single",
-  "typescript.preferences.quoteStyle": "single"
+  "typescript.preferences.quoteStyle": "single",
+  "vetur.experimental.templateInterpolationService": true,
+  "vetur.completion.autoImport": false,
+  "vetur.validation.templateProps": true
 }
