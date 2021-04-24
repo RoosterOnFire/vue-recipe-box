@@ -5,7 +5,7 @@
       <input type="text" :value="value" @input.self="editValue(index, $event)" />
       <slot :index="index" />
     </div>
-    <button type="button" @click="() => addValue">{{ buttonAddText }}</button>
+    <button type="button" @click="() => addValue()">{{ buttonAddText }}</button>
   </div>
 </template>
 
@@ -26,7 +26,7 @@ export default defineComponent({
       required: true,
     },
     addValue: {
-      type: Function as PropType<(key: number, event: Event) => void>,
+      type: Function,
       required: true,
     },
     editValue: {

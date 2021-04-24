@@ -7,7 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.4.1] - 2021-04-04
+## [0.4.2] - 2021-04-24
+
+### Fixed
+
+- incorrect dates in CHANGELOG
+- new ingredient/direction is not added when 'Add ingredient/direction' is clicked
+
+## [0.4.1] - 2021-04-24
 
 ### Fixed
 
