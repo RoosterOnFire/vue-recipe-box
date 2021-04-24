@@ -8,7 +8,7 @@
         @click.self="$emit('select', recipe.name)"
       >
         {{ recipe.name }}
-        <TrashRecipe :recipe="recipe" />
+        <trash-recipe :recipe="recipe" />
       </li>
       <li class="hover:bg-gray-300 cursor-pointer" @click.self="addNewRecipe">
         <button class="italic" type="button" @click="addNewRecipe">Add new recipe</button>
@@ -41,7 +41,7 @@ export default defineComponent({
     const { recipes, isEmpty } = toRefs(props);
 
     return {
-      recipes,
+      recipes: recipes || [],
       isEmpty,
       addNewRecipe: () => context.emit('add'),
     };
