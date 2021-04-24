@@ -8,7 +8,7 @@
         @click.self="$emit('select', recipe.name)"
       >
         {{ recipe.name }}
-        <TrashRecipe :recipe="recipe" />
+        <trash-recipe :recipe="recipe" />
       </li>
       <li class="hover:bg-gray-300 cursor-pointer" @click.self="addNewRecipe">
         <button class="italic" type="button" @click="addNewRecipe">Add new recipe</button>
@@ -18,9 +18,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, toRefs, PropType } from "vue";
-import TrashRecipe from "./Trash/TrashRecipe.vue";
-import { RecipeListType } from "@type";
+import { defineComponent, toRefs, PropType } from 'vue';
+import TrashRecipe from './Trash/TrashRecipe.vue';
+import { RecipeListType } from '@type';
 
 export default defineComponent({
   components: {
@@ -36,14 +36,14 @@ export default defineComponent({
       require: true,
     },
   },
-  emits: ["add", "select", "delete"],
+  emits: ['add', 'select', 'delete'],
   setup(props, context) {
     const { recipes, isEmpty } = toRefs(props);
 
     return {
-      recipes,
+      recipes: recipes || [],
       isEmpty,
-      addNewRecipe: () => context.emit("add"),
+      addNewRecipe: () => context.emit('add'),
     };
   },
 });

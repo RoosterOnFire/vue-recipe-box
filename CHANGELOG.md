@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.0] - 2021-04-24
+
+### Added
+
+- style settings for vscode
+
+### Change
+
+- reorg of RecipeEdit, RecipeView (child components)
+- naming base on Vue style guide
+- correct types for heroicons
+
 ## [0.3.0] - 2021-04-20
 
 ### Added
