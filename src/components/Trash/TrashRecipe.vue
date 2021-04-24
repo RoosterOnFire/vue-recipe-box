@@ -3,17 +3,23 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, PropType } from 'vue';
 import { TrashIcon } from '@heroicons/vue/solid';
 import useRecipes from '../../composables/useRecipes';
+import { RecipeType } from '@type*';
 
 export default defineComponent({
   components: { TrashIcon },
-  setup() {
+  props: {
+    recipe: Object as PropType<RecipeType>,
+  },
+  setup(props) {
     const { trashRecipe } = useRecipes();
 
+    const trash = () => trashRecipe(props.recipe);
+
     return {
-      trash: trashRecipe,
+      trash,
     };
   },
 });
