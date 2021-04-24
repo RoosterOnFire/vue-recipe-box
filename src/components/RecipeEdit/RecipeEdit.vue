@@ -4,7 +4,7 @@
       <div class="grid md:grid-cols-2 justify-items-center gap-5 p-4 bg-gray-300 border border-gray-900">
         <x-icon class="h-8 w-8 md:col-span-2 justify-self-end cursor-pointer" @click="close" />
         <h1 class="md:col-span-2 text-4xl font-semibold">Edit recipe</h1>
-        <recipe-edit-name :name="recipe.name" />
+        <recipe-edit-name v-model:name="recipe.name" />
         <recipe-edit-list
           header="Ingredients"
           button-add-text="Add ingredient"
