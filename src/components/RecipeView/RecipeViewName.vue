@@ -2,7 +2,13 @@
   <div class="flex items-center space-x-3">
     <template v-if="mode">
       Recipe:
-      <input type="text" name="recipeName" ref="recipeNameInput" :value="name" @input="updateName" />
+      <input
+        type="text"
+        name="recipeName"
+        ref="recipeNameInput"
+        :value="name"
+        @input="updateName"
+      />
     </template>
     <template v-else>
       <h2 class="text-3xl">Recipe: {{ name }}</h2>
@@ -29,7 +35,9 @@ export default defineComponent({
     const { name, mode } = toRefs(props);
 
     function updateName(event: Event) {
-      event && event.target && emit('update:name', (event.target as HTMLInputElement).value);
+      event &&
+        event.target &&
+        emit('update:name', (event.target as HTMLInputElement).value);
     }
 
     return {

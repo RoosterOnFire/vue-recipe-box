@@ -4,12 +4,18 @@
     <ul class="list-disc list-inside">
       <template v-for="(value, index) in items" :key="index">
         <li v-if="mode" class="pl-4 flex">
-          <input type="text" :value="value" @input.self="editValue(index, $event)" />
+          <input
+            type="text"
+            :value="value"
+            @input.self="editValue(index, $event)"
+          />
           <trash-value :type="type" :index="index" />
         </li>
         <li v-else class="pl-4">{{ value }}</li>
       </template>
-      <button v-if="mode" type="button" @click="() => addValue()">{{ buttonAddText }}</button>
+      <button v-if="mode" type="button" @click="() => addValue()">
+        {{ buttonAddText }}
+      </button>
     </ul>
   </div>
 </template>
@@ -52,7 +58,15 @@ export default defineComponent({
   },
   emits: ['updateRecipe'],
   setup(props) {
-    const { type, header, items, mode, buttonAddText, addValue, editValue } = toRefs(props);
+    const {
+      type,
+      header,
+      items,
+      mode,
+      buttonAddText,
+      addValue,
+      editValue,
+    } = toRefs(props);
 
     return {
       type,

@@ -1,6 +1,9 @@
 <template>
   <transition name="fade" mode="out-in">
-    <div class="container space-y-8 transition duration-500 ease-in-out" v-if="recipe && recipe.name">
+    <div
+      v-if="recipe && recipe.name"
+      class="container space-y-8 transition duration-500 ease-in-out"
+    >
       <recipe-view-name v-model:name="recipe.name" :mode="mode">
         <pencil-alt-icon class="h-8 w-8 cursor-pointer" @click="switchEdit" />
         <trash-recipe />
@@ -24,7 +27,7 @@
         :edit-value="updateDirection"
       />
     </div>
-    <div class="container space-y-8" v-else>
+    <div v-else class="container space-y-8">
       <h2 class="italic text-3xl">No recipe selected</h2>
     </div>
   </transition>
@@ -64,8 +67,13 @@ export default defineComponent({
       mode.value = !mode.value;
     }
 
-    function updateRecipe(action: 'ingredients' | 'directions', key: number, target: EventTarget | null) {
-      target && emit('updateRecipe', action, key, (target as HTMLInputElement).value);
+    function updateRecipe(
+      action: 'ingredients' | 'directions',
+      key: number,
+      target: EventTarget | null,
+    ) {
+      target &&
+        emit('updateRecipe', action, key, (target as HTMLInputElement).value);
     }
 
     function updateIngredients(key: number, event: Event) {

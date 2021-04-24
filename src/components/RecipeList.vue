@@ -11,7 +11,9 @@
         <trash-recipe :recipe="recipe" />
       </li>
       <li class="hover:bg-gray-300 cursor-pointer" @click.self="addNewRecipe">
-        <button class="italic" type="button" @click="addNewRecipe">Add new recipe</button>
+        <button class="italic" type="button" @click="addNewRecipe">
+          Add new recipe
+        </button>
       </li>
     </ul>
   </div>
