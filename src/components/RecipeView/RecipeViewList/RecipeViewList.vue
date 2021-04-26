@@ -1,12 +1,8 @@
 <template>
   <div>
-    <h3 class="mb-4">{{ header }}</h3>
+    <h3 class="header">{{ header }}</h3>
     <list-transition>
-      <li
-        v-for="(value, index) in items"
-        :key="index"
-        class="pl-4 flex space-x-3"
-      >
+      <li v-for="(value, index) in items" :key="index" class="list-item">
         <input
           v-if="mode"
           type="text"
@@ -19,11 +15,21 @@
     </list-transition>
     <plus-circle-icon
       v-if="mode"
-      class="h-8 w-8 mx-auto mt-4 cursor-pointer"
+      class="icon plus-circle-icon"
       @click="() => addValue()"
     />
   </div>
 </template>
+
+<style scoped>
+.header {
+  @apply mb-4;
+}
+
+.list-item {
+  @apply pl-4 flex space-x-3;
+}
+</style>
 
 <script lang="ts">
 import { defineComponent, PropType, toRefs } from 'vue';

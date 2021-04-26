@@ -1,12 +1,9 @@
 <template>
   <div class="container">
-    <plus-circle-icon
-      class="h-8 w-8 mx-auto mb-2 cursor-pointer"
-      @click="addNewRecipe"
-    />
+    <plus-circle-icon class="icon plus-circle-icon" @click="addNewRecipe" />
     <list-transition>
       <li
-        class="flex justify-between hover:bg-gray-300 cursor-pointer"
+        class="list-item"
         v-for="recipe in recipes"
         :key="recipe.name"
         @click.self="$emit('select', recipe.name)"
@@ -17,6 +14,12 @@
     </list-transition>
   </div>
 </template>
+
+<style scoped>
+.list-item {
+  @apply flex justify-between hover:bg-gray-300 cursor-pointer;
+}
+</style>
 
 <script lang="ts">
 import { defineComponent, toRefs, PropType } from 'vue';

@@ -1,22 +1,34 @@
 <template>
-  <div
-    class="flex flex-col items-center max-w-2xl h-screen p-4 mx-auto gap-4 text-2xl"
-  >
-    <h1 class="font-serif italic text-6xl">Recipe box</h1>
+  <div class="app">
+    <h1 class="header">Recipe box</h1>
     <recipe-list
-      class="p-2 bg-gray-100 border-2 border-gray-400 rounded shadow-md"
+      class="default-block"
       :recipes="recipes"
       :isEmpty="isRecipeListEmpty"
       @select="updateSelectedRecipe"
       @add="addRecipe"
     />
     <recipe-view
-      class="p-2 bg-gray-100 border-2 border-gray-400 rounded shadow-xl"
+      class="default-block"
       :recipe="selectedRecipe"
       @updateRecipe="updateRecipe"
     />
   </div>
 </template>
+
+<style scoped>
+.app {
+  @apply flex flex-col items-center max-w-2xl h-screen p-4 mx-auto gap-4 text-2xl;
+}
+
+.header {
+  @apply font-serif italic text-6xl;
+}
+
+.default-block {
+  @apply p-2 bg-gray-100 border-2 border-gray-400 rounded shadow-md;
+}
+</style>
 
 <script lang="ts">
 import { defineComponent } from 'vue';

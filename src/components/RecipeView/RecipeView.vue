@@ -1,15 +1,12 @@
 <template>
   <transition name="fade" mode="out-in">
-    <div
-      v-if="recipe && recipe.name"
-      class="grid grid-cols-1 md:grid-cols-2 w-full space-y-4"
-    >
+    <div v-if="recipe && recipe.name" class="recipeView">
       <recipe-view-name
         v-model:name="recipe.name"
         :mode="mode"
         class="md:col-span-2"
       >
-        <pencil-alt-icon class="h-8 w-8 cursor-pointer" @click="switchEdit" />
+        <pencil-alt-icon class="icon" @click="switchEdit" />
         <trash-recipe />
       </recipe-view-name>
       <recipe-view-list-ingredients
@@ -30,6 +27,12 @@
     </div>
   </transition>
 </template>
+
+<style scoped>
+.recipeView {
+  @apply grid grid-cols-1 md:grid-cols-2 w-full space-y-4;
+}
+</style>
 
 <script lang="ts">
 import { defineComponent, PropType, toRefs, ref } from 'vue';
