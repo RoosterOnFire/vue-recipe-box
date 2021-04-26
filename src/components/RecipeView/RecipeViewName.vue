@@ -6,7 +6,7 @@
         type="text"
         name="recipeName"
         :value="name"
-        @change.self="updateName(name, $event)"
+        @change.self="updateName($event)"
       />
     </template>
     <h2 v-else class="text-3xl">Recipe: {{ name }}</h2>

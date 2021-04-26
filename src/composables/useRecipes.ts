@@ -59,10 +59,9 @@ function addDirection(): void {
   selectedRecipe.value.directions.push('');
 }
 
-function updateName(key: number, event: Event): void {
-  console.log(key, event);
+function updateName(event: Event): void {
   const target = event.target as HTMLInputElement;
-  target && updateRecipe('name', key, target.value);
+  target && updateRecipe('name', 0, target.value);
 }
 
 function updateIngredients(key: number, event: Event): void {
