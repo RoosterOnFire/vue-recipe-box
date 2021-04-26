@@ -25,7 +25,7 @@ const isRecipeListEmpty = computed(() => {
   return recipes.length === 0;
 });
 
-function addRecipe() {
+function addRecipe(): void {
   recipes.push({
     name: 'Recipe',
     ingredients: [],
@@ -36,21 +36,43 @@ function addRecipe() {
 }
 
 function updateRecipe(
-  action: 'ingredients' | 'directions',
+  action: 'name' | 'ingredients' | 'directions',
   index: number,
   newValue: string,
 ): void {
-  recipes.filter((recipe) => recipe.name === selectedRecipe.value.name)[0][
-    action
-  ][index] = newValue;
+  const recipe = recipes.filter(
+    (recipe) => recipe.name === selectedRecipe.value.name,
+  )[0];
+
+  if (action === 'name') {
+    recipe.name = newValue;
+  } else {
+    recipe[action][index] = newValue;
+  }
 }
 
-function addIngredient() {
+function addIngredient(): void {
   selectedRecipe.value.ingredients.push('');
 }
 
-function addDirection() {
+function addDirection(): void {
   selectedRecipe.value.directions.push('');
+}
+
+function updateName(key: number, event: Event): void {
+  console.log(key, event);
+  const target = event.target as HTMLInputElement;
+  target && updateRecipe('name', key, target.value);
+}
+
+function updateIngredients(key: number, event: Event): void {
+  const target = event.target as HTMLInputElement;
+  target && updateRecipe('ingredients', key, target.value);
+}
+
+function updateDirection(key: number, event: Event): void {
+  const target = event.target as HTMLInputElement;
+  target && updateRecipe('directions', key, target.value);
 }
 
 function updateSelectedRecipe(name: string): void {
@@ -85,7 +107,10 @@ export default function useRecipes() {
     addRecipe,
     addIngredient,
     addDirection,
+    updateName,
     updateRecipe,
+    updateIngredients,
+    updateDirection,
     updateSelectedRecipe,
     trashRecipe,
     trashIngredient,

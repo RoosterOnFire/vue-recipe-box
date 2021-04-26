@@ -7,7 +7,7 @@
           v-if="mode"
           type="text"
           :value="value"
-          @input.self="editValue(index, $event)"
+          @input.self="updateValue(index, $event)"
         />
         <trash-value v-if="mode" :type="type" :index="index" />
         <template v-else>{{ value }}</template>
@@ -35,7 +35,7 @@
 import { defineComponent, PropType, toRefs } from 'vue';
 import { PlusCircleIcon } from '@heroicons/vue/solid';
 import ListTransition from '../ListTransition.vue';
-import TrashValue from '@component/Trash/TrashValue.vue';
+import TrashValue from '../Trash/TrashValue.vue';
 
 export default defineComponent({
   components: { PlusCircleIcon, TrashValue, ListTransition },
@@ -60,14 +60,13 @@ export default defineComponent({
       type: Function,
       required: true,
     },
-    editValue: {
+    updateValue: {
       type: Function as PropType<(key: number, event: Event) => void>,
       required: true,
     },
   },
-  emits: ['updateRecipe'],
   setup(props) {
-    const { type, header, items, mode, addValue, editValue } = toRefs(props);
+    const { type, header, items, mode, addValue, updateValue } = toRefs(props);
 
     return {
       type,
@@ -75,7 +74,7 @@ export default defineComponent({
       items: items || [],
       mode,
       addValue,
-      editValue,
+      updateValue,
     };
   },
 });

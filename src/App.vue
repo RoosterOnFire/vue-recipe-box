@@ -1,18 +1,8 @@
 <template>
   <div class="app">
     <h1 class="header">Recipe box</h1>
-    <recipe-list
-      class="default-block"
-      :recipes="recipes"
-      :isEmpty="isRecipeListEmpty"
-      @select="updateSelectedRecipe"
-      @add="addRecipe"
-    />
-    <recipe-view
-      class="default-block"
-      :recipe="selectedRecipe"
-      @updateRecipe="updateRecipe"
-    />
+    <recipe-list />
+    <recipe-view />
   </div>
 </template>
 
@@ -24,42 +14,18 @@
 .header {
   @apply font-serif italic text-6xl;
 }
-
-.default-block {
-  @apply p-2 bg-gray-100 border-2 border-gray-400 rounded shadow-md;
-}
 </style>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import RecipeList from '@component/RecipeList.vue';
-import RecipeView from '@component/RecipeView/RecipeView.vue';
-import useRecipes from './composables/useRecipes';
+import RecipeList from './components/RecipeList.vue';
+import RecipeView from './components/RecipeView/RecipeView.vue';
 
 export default defineComponent({
   name: 'App',
   components: {
     RecipeList,
     RecipeView,
-  },
-  setup() {
-    const {
-      recipes,
-      selectedRecipe,
-      isRecipeListEmpty,
-      addRecipe,
-      updateRecipe,
-      updateSelectedRecipe,
-    } = useRecipes();
-
-    return {
-      addRecipe,
-      isRecipeListEmpty,
-      recipes,
-      selectedRecipe,
-      updateRecipe,
-      updateSelectedRecipe,
-    };
   },
 });
 </script>

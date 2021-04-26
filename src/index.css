@@ -10,6 +10,10 @@
   .plus-circle-icon {
     @apply mx-auto;
   }
+
+  .default-container {
+    @apply container p-2 bg-gray-100 border-2 border-gray-400 rounded shadow-md;
+  }
 }
 
 .fade-enter-active,
