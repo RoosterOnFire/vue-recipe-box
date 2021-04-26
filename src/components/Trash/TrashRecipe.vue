@@ -1,12 +1,12 @@
 <template>
-  <trash-icon class="h-8 w-8 cursor-pointer" @click="trash" />
+  <trash-icon class="icon" @click="trash" />
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
+import { RecipeType } from '@type*';
 import { TrashIcon } from '@heroicons/vue/solid';
 import useRecipes from '../../composables/useRecipes';
-import { RecipeType } from '@type*';
 
 export default defineComponent({
   components: { TrashIcon },

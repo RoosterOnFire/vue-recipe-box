@@ -1,17 +1,13 @@
 <template>
   <div>
-    <h3 class="mb-4">{{ header }}</h3>
+    <h3 class="header">{{ header }}</h3>
     <list-transition>
-      <li
-        v-for="(value, index) in items"
-        :key="index"
-        class="pl-4 flex space-x-3"
-      >
+      <li v-for="(value, index) in items" :key="index" class="list-item">
         <input
           v-if="mode"
           type="text"
           :value="value"
-          @input.self="editValue(index, $event)"
+          @input.self="updateValue(index, $event)"
         />
         <trash-value v-if="mode" :type="type" :index="index" />
         <template v-else>{{ value }}</template>
@@ -19,17 +15,27 @@
     </list-transition>
     <plus-circle-icon
       v-if="mode"
-      class="h-8 w-8 mx-auto mt-4 cursor-pointer"
+      class="icon plus-circle-icon"
       @click="() => addValue()"
     />
   </div>
 </template>
 
+<style scoped>
+.header {
+  @apply mb-4;
+}
+
+.list-item {
+  @apply pl-4 flex space-x-3;
+}
+</style>
+
 <script lang="ts">
 import { defineComponent, PropType, toRefs } from 'vue';
 import { PlusCircleIcon } from '@heroicons/vue/solid';
 import ListTransition from '../ListTransition.vue';
-import TrashValue from '@component/Trash/TrashValue.vue';
+import TrashValue from '../Trash/TrashValue.vue';
 
 export default defineComponent({
   components: { PlusCircleIcon, TrashValue, ListTransition },
@@ -54,14 +60,13 @@ export default defineComponent({
       type: Function,
       required: true,
     },
-    editValue: {
+    updateValue: {
       type: Function as PropType<(key: number, event: Event) => void>,
       required: true,
     },
   },
-  emits: ['updateRecipe'],
   setup(props) {
-    const { type, header, items, mode, addValue, editValue } = toRefs(props);
+    const { type, header, items, mode, addValue, updateValue } = toRefs(props);
 
     return {
       type,
@@ -69,7 +74,7 @@ export default defineComponent({
       items: items || [],
       mode,
       addValue,
-      editValue,
+      updateValue,
     };
   },
 });

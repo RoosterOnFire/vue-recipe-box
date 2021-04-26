@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .icon {
+    @apply h-8 w-8 cursor-pointer;
+  }
+
+  .plus-circle-icon {
+    @apply mx-auto;
+  }
+
+  .default-container {
+    @apply container p-2 bg-gray-100 border-2 border-gray-400 rounded shadow-md;
+  }
+}
+
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.1s ease;

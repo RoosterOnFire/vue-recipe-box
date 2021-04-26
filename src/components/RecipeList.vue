@@ -1,15 +1,12 @@
 <template>
-  <div class="container">
-    <plus-circle-icon
-      class="h-8 w-8 mx-auto mb-2 cursor-pointer"
-      @click="addNewRecipe"
-    />
+  <div class="default-container">
+    <plus-circle-icon class="icon plus-circle-icon" @click="addRecipe" />
     <list-transition>
       <li
-        class="flex justify-between hover:bg-gray-300 cursor-pointer"
+        class="list-item"
         v-for="recipe in recipes"
         :key="recipe.name"
-        @click.self="$emit('select', recipe.name)"
+        @click.self="updateSelectedRecipe(recipe.name)"
       >
         {{ recipe.name }}
         <trash-recipe :recipe="recipe" />
@@ -18,12 +15,19 @@
   </div>
 </template>
 
+<style scoped>
+.list-item {
+  @apply flex justify-between hover:bg-gray-300 cursor-pointer;
+}
+</style>
+
 <script lang="ts">
 import { defineComponent, toRefs, PropType } from 'vue';
 import { PlusCircleIcon } from '@heroicons/vue/solid';
 import { RecipeListType } from '@type';
 import ListTransition from './ListTransition.vue';
 import TrashRecipe from './Trash/TrashRecipe.vue';
+import useRecipes from '../composables/useRecipes';
 
 export default defineComponent({
   components: {
@@ -31,24 +35,19 @@ export default defineComponent({
     PlusCircleIcon,
     TrashRecipe,
   },
-  props: {
-    recipes: {
-      type: Array as PropType<RecipeListType>,
-      require: true,
-    },
-    isEmpty: {
-      type: Boolean,
-      require: true,
-    },
-  },
-  emits: ['add', 'select', 'delete'],
-  setup(props, context) {
-    const { recipes, isEmpty } = toRefs(props);
+  setup() {
+    const {
+      recipes,
+      isRecipeListEmpty,
+      addRecipe,
+      updateSelectedRecipe,
+    } = useRecipes();
 
     return {
       recipes: recipes || [],
-      isEmpty,
-      addNewRecipe: () => context.emit('add'),
+      isEmpty: isRecipeListEmpty,
+      addRecipe,
+      updateSelectedRecipe,
     };
   },
 });

@@ -1,5 +1,5 @@
 <template>
-  <trash-icon class="h-8 w-8 cursor-pointer" @click="trash" />
+  <trash-icon class="icon" @click="trash" />
 </template>
 
 <script lang="ts">
