@@ -9,13 +9,17 @@
         <pencil-alt-icon class="icon" @click="switchEdit" />
         <trash-recipe />
       </recipe-view-name>
-      <recipe-view-list-ingredients
+      <recipe-view-list
+        header="Ingredients"
+        type="ingredient"
         :items="recipe.ingredients"
         :mode="mode"
         :add-value="addIngredient"
         :edit-value="updateIngredients"
       />
-      <recipe-view-list-directions
+      <recipe-view-list
+        header="Directions"
+        type="direction"
         :items="recipe.directions"
         :mode="mode"
         :add-value="addDirection"
@@ -38,17 +42,15 @@
 import { defineComponent, PropType, toRefs, ref } from 'vue';
 import { PencilAltIcon } from '@heroicons/vue/solid';
 import { RecipeType } from '../../types/type';
-import RecipeViewListDirections from './RecipeViewList/RecipeViewListDirections.vue';
-import RecipeViewListIngredients from './RecipeViewList/RecipeViewListIngredients.vue';
 import RecipeViewName from './RecipeViewName.vue';
 import TrashRecipe from '@component/Trash/TrashRecipe.vue';
 import useRecipes from '../../composables/useRecipes';
+import RecipeViewList from './RecipeViewList.vue';
 
 export default defineComponent({
   components: {
     PencilAltIcon,
-    RecipeViewListDirections,
-    RecipeViewListIngredients,
+    RecipeViewList,
     RecipeViewName,
     TrashRecipe,
   },

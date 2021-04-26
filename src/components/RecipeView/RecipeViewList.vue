@@ -34,7 +34,7 @@
 <script lang="ts">
 import { defineComponent, PropType, toRefs } from 'vue';
 import { PlusCircleIcon } from '@heroicons/vue/solid';
-import ListTransition from '../../ListTransition.vue';
+import ListTransition from '../ListTransition.vue';
 import TrashValue from '@component/Trash/TrashValue.vue';
 
 export default defineComponent({
