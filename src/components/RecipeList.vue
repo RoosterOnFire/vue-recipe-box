@@ -1,7 +1,7 @@
 <template>
   <div class="default-container">
-    <plus-circle-icon class="icon plus-circle-icon" @click="addRecipe" />
-    <list-transition>
+    <PlusCircleIcon class="icon plus-circle-icon" @click="addRecipe" />
+    <ListTransition>
       <li
         class="list-item"
         v-for="recipe in recipes"
@@ -9,9 +9,9 @@
         @click.self="updateSelectedRecipe(recipe.name)"
       >
         {{ recipe.name }}
-        <trash-recipe :recipe="recipe" />
+        <TrashRecipe :recipe="recipe" />
       </li>
-    </list-transition>
+    </ListTransition>
   </div>
 </template>
 
@@ -22,12 +22,11 @@
 </style>
 
 <script lang="ts">
-import { defineComponent, toRefs, PropType } from 'vue';
-import { PlusCircleIcon } from '@heroicons/vue/solid';
-import { RecipeListType } from '@type';
-import ListTransition from './ListTransition.vue';
-import TrashRecipe from './Trash/TrashRecipe.vue';
-import useRecipes from '../composables/useRecipes';
+import { defineComponent } from "vue";
+import { PlusCircleIcon } from "@heroicons/vue/solid";
+import ListTransition from "./ListTransition.vue";
+import TrashRecipe from "./Trash/TrashRecipe.vue";
+import useRecipes from "../composables/useRecipes";
 
 export default defineComponent({
   components: {

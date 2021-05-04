@@ -5,13 +5,11 @@
   "html.format.endWithNewline": true,
   "html.format.indentHandlebars": true,
   "html.format.indentInnerHtml": true,
-  "prettier.printWidth": 80,
-  "prettier.tabWidth": 2,
   "tailwindCSS.emmetCompletions": true,
-  "prettier.singleQuote": true,
   "javascript.preferences.quoteStyle": "single",
   "typescript.preferences.quoteStyle": "single",
-  "vetur.experimental.templateInterpolationService": true,
   "vetur.completion.autoImport": true,
-  "vetur.validation.templateProps": true
+  "vetur.validation.templateProps": true,
+  "vetur.completion.tagCasing": "initial",
+  "prettier.singleQuote": true
 }

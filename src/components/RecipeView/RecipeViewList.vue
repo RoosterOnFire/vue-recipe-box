@@ -9,11 +9,11 @@
           :value="value"
           @input.self="updateValue(index, $event)"
         />
-        <trash-value v-if="mode" :type="type" :index="index" />
+        <TrashValue v-if="mode" :type="type" :index="index" />
         <template v-else>{{ value }}</template>
       </li>
     </list-transition>
-    <plus-circle-icon
+    <PlusCircleIcon
       v-if="mode"
       class="icon plus-circle-icon"
       @click="() => addValue()"
@@ -32,16 +32,16 @@
 </style>
 
 <script lang="ts">
-import { defineComponent, PropType, toRefs } from 'vue';
-import { PlusCircleIcon } from '@heroicons/vue/solid';
-import ListTransition from '../ListTransition.vue';
-import TrashValue from '../Trash/TrashValue.vue';
+import { defineComponent, PropType, toRefs } from "vue";
+import { PlusCircleIcon } from "@heroicons/vue/solid";
+import ListTransition from "../ListTransition.vue";
+import TrashValue from "../Trash/TrashValue.vue";
 
 export default defineComponent({
   components: { PlusCircleIcon, TrashValue, ListTransition },
   props: {
     type: {
-      type: String as PropType<'ingredient' | 'direction'>,
+      type: String as PropType<"ingredient" | "direction">,
       required: true,
     },
     header: {

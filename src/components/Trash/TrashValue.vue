@@ -1,11 +1,11 @@
 <template>
-  <trash-icon class="icon" @click="trash" />
+  <TrashIcon class="icon" @click="trash" />
 </template>
 
 <script lang="ts">
-import { defineComponent, toRefs } from 'vue';
-import { TrashIcon } from '@heroicons/vue/solid';
-import useRecipes from '../../composables/useRecipes';
+import { defineComponent, toRefs } from "vue";
+import { TrashIcon } from "@heroicons/vue/solid";
+import useRecipes from "../../composables/useRecipes";
 
 export default defineComponent({
   components: { TrashIcon },
@@ -25,9 +25,9 @@ export default defineComponent({
     const { trashIngredient, trashDirection } = useRecipes();
 
     function trash() {
-      if (type.value === 'ingredient') {
+      if (type.value === "ingredient") {
         trashIngredient(index.value);
-      } else if (type.value === 'direction') {
+      } else if (type.value === "direction") {
         trashDirection(index.value);
       }
     }
