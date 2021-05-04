@@ -1,15 +1,15 @@
 <template>
   <transition name="fade" mode="out-in">
     <div v-if="recipe && recipe.name" class="default-container recipe-view">
-      <recipe-view-name
+      <RecipeViewName
         v-model:name="recipe.name"
         :mode="mode"
         class="md:col-span-2"
       >
-        <pencil-alt-icon class="icon" @click="switchEdit" />
-        <trash-recipe />
-      </recipe-view-name>
-      <recipe-view-list
+        <PencilAltIcon class="icon" @click="switchEdit" />
+        <TrashRecipe :recipe="recipe" />
+      </RecipeViewName>
+      <RecipeViewList
         header="Ingredients"
         type="ingredient"
         :items="recipe.ingredients"
@@ -17,7 +17,7 @@
         :add-value="addIngredient"
         :update-value="updateIngredients"
       />
-      <recipe-view-list
+      <RecipeViewList
         header="Directions"
         type="direction"
         :items="recipe.directions"
@@ -32,20 +32,34 @@
   </transition>
 </template>
 
-<style scoped>
+<style>
 .recipe-view {
   @apply grid grid-cols-1 md:grid-cols-2 w-full space-y-4;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  @apply transition-opacity ease-linear duration-200;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  @apply opacity-0;
+}
+
+.fade-enter-to,
+.fade-leave-form {
+  @apply opacity-100;
 }
 </style>
 
 <script lang="ts">
-import { defineComponent, PropType, toRefs, ref } from 'vue';
-import { PencilAltIcon } from '@heroicons/vue/solid';
-import { RecipeType } from '../../types/type';
-import RecipeViewList from './RecipeViewList.vue';
-import RecipeViewName from './RecipeViewName.vue';
-import TrashRecipe from '../Trash/TrashRecipe.vue';
-import useRecipes from '../../composables/useRecipes';
+import { defineComponent, ref } from "vue";
+import { PencilAltIcon } from "@heroicons/vue/solid";
+import RecipeViewList from "./RecipeViewList.vue";
+import RecipeViewName from "./RecipeViewName.vue";
+import TrashRecipe from "../Trash/TrashRecipe.vue";
+import useRecipes from "../../composables/useRecipes";
 
 export default defineComponent({
   components: {
@@ -54,8 +68,8 @@ export default defineComponent({
     RecipeViewName,
     TrashRecipe,
   },
-  emits: ['delete', 'updateRecipe'],
-  setup(props, { emit }) {
+  emits: ["delete", "updateRecipe"],
+  setup() {
     const {
       selectedRecipe,
       addIngredient,

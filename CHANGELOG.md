@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.8.0] - 2021-05-04
+
+### Changes
+
+- better transitions
+- vscode settings
+- moved css to correct components
+
 ## [0.7.1] - 2021-04-26
 
 ### Fixed

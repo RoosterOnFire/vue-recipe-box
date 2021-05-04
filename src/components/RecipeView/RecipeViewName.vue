@@ -15,8 +15,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, toRefs } from 'vue';
-import useRecipes from '../../composables/useRecipes';
+import { defineComponent, toRefs } from "vue";
+import useRecipes from "../../composables/useRecipes";
 
 export default defineComponent({
   props: {
@@ -29,8 +29,8 @@ export default defineComponent({
       required: false,
     },
   },
-  emits: ['update:name'],
-  setup(props, { emit }) {
+  emits: ["update:name"],
+  setup(props) {
     const { name, mode } = toRefs(props);
 
     const { updateName } = useRecipes();

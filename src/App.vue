@@ -1,8 +1,8 @@
 <template>
   <div class="app">
     <h1 class="header">Recipe box</h1>
-    <recipe-list />
-    <recipe-view />
+    <RecipeList />
+    <RecipeView />
   </div>
 </template>
 
@@ -17,12 +17,12 @@
 </style>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import RecipeList from './components/RecipeList.vue';
-import RecipeView from './components/RecipeView/RecipeView.vue';
+import { defineComponent } from "vue";
+import RecipeList from "./components/RecipeList.vue";
+import RecipeView from "./components/RecipeView/RecipeView.vue";
 
 export default defineComponent({
-  name: 'App',
+  name: "App",
   components: {
     RecipeList,
     RecipeView,
