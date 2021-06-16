@@ -1,8 +1,6 @@
-# Vue recipe box
+# [Build a recipe box](https://www.freecodecamp.org/learn/coding-interview-prep/take-home-projects/build-a-recipe-box)
 
-[freeCodeCamp Take Home Project: Build a recipe box](https://www.freecodecamp.org/learn/coding-interview-prep/take-home-projects/build-a-recipe-box)
-
-Try it out: [Vue Recipe Box](https://martinkukli.github.io/vue-recipe-box/)
+[Live](https://martinkukli.github.io/vue-recipe-box/)
 
 ## Features
 
@@ -15,9 +13,3 @@ Try it out: [Vue Recipe Box](https://martinkukli.github.io/vue-recipe-box/)
 - Order ingredients and directions with drag and drop
 - Save recipes to local storage
 - Fancy animation
-
-## Tools
-
-- Vue 3 + TypeScript
-- Tailwind css
-- Vite
