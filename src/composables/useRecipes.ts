@@ -38,10 +38,10 @@ function addRecipe(): void {
 function updateRecipe(
   action: 'name' | 'ingredients' | 'directions',
   index: number,
-  newValue: string,
+  newValue: string
 ): void {
   const recipe = recipes.filter(
-    (recipe) => recipe.name === selectedRecipe.value.name,
+    (recipe) => recipe.name === selectedRecipe.value.name
   )[0];
 
   if (action === 'name') {

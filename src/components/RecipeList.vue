@@ -35,12 +35,8 @@ export default defineComponent({
     TrashRecipe,
   },
   setup() {
-    const {
-      recipes,
-      isRecipeListEmpty,
-      addRecipe,
-      updateSelectedRecipe,
-    } = useRecipes();
+    const { recipes, isRecipeListEmpty, addRecipe, updateSelectedRecipe } =
+      useRecipes();
 
     return {
       recipes: recipes || [],

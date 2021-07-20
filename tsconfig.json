@@ -9,12 +9,18 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "lib": ["esnext", "dom"],
-    "types": ["vite/client"],
+    "types": ["vite/client", "@types/jest"],
     "paths": {
       "@component*": ["./src/components/"],
       "@composables*": ["./src/composables/"],
       "@type*": ["./src/types/type.ts"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "tests/App.test.ts"
+  ]
 }
