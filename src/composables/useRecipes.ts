@@ -1,5 +1,5 @@
 import { reactive, ref, computed } from 'vue';
-import { RecipeListType, RecipeType } from '@type';
+import { RecipeListType, RecipeType } from '@/types/type';
 
 const recipes = reactive<RecipeListType>([
   {

@@ -4,7 +4,7 @@
   </transition-group>
 </template>
 
-<style>
+<style lang="postcss">
 .list-enter-active,
 .list-leave-active {
   @apply transition ease-linear;

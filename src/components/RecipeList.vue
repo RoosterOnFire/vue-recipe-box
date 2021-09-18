@@ -15,7 +15,7 @@
   </div>
 </template>
 
-<style scoped>
+<style lang="postcss" scoped>
 .list-item {
   @apply flex justify-between hover:bg-gray-300 cursor-pointer;
 }
@@ -24,9 +24,9 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { PlusCircleIcon } from "@heroicons/vue/solid";
-import ListTransition from "./ListTransition.vue";
-import TrashRecipe from "./Trash/TrashRecipe.vue";
-import useRecipes from "../composables/useRecipes";
+import ListTransition from "@/components/ListTransition.vue";
+import TrashRecipe from "@/components/TrashRecipe.vue";
+import useRecipes from "@/composables/useRecipes";
 
 export default defineComponent({
   components: {

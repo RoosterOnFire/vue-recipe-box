@@ -6,7 +6,7 @@
   </div>
 </template>
 
-<style scoped>
+<style lang="postcss" scoped>
 .app {
   @apply flex flex-col items-center max-w-2xl h-screen p-4 mx-auto gap-4 text-2xl;
 }
@@ -18,8 +18,8 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import RecipeList from "./components/RecipeList.vue";
-import RecipeView from "./components/RecipeView/RecipeView.vue";
+import RecipeList from "@/components/RecipeList.vue";
+import RecipeView from "@/components/RecipeView.vue";
 
 export default defineComponent({
   name: "App",
