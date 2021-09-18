@@ -1,7 +1,7 @@
-export type RecipeType = {
+export type Recipe = {
   name: string;
   ingredients: Array<string>;
   directions: Array<string>;
 };
 
-export type RecipeListType = Array<RecipeType>;
+export type RecipeList = Array<Recipe>;
