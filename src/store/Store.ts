@@ -1,7 +1,7 @@
 import { reactive, ref, computed } from 'vue';
-import { RecipeListType, RecipeType } from '@/types/type';
+import { RecipeList, Recipe } from '@/types/type';
 
-const recipes = reactive<RecipeListType>([
+const recipes = reactive<RecipeList>([
   {
     name: 'RecipeName1',
     ingredients: ['ingredient11'],
@@ -19,7 +19,7 @@ const recipes = reactive<RecipeListType>([
   },
 ]);
 
-const selectedRecipe = ref<RecipeType>({} as RecipeType);
+const selectedRecipe = ref<Recipe>({} as Recipe);
 
 const isRecipeListEmpty = computed(() => {
   return recipes.length === 0;
@@ -30,7 +30,7 @@ function addRecipe(): void {
     name: 'Recipe',
     ingredients: [],
     directions: [],
-  } as RecipeType);
+  } as Recipe);
 
   updateSelectedRecipe('Recipe');
 }
@@ -78,7 +78,7 @@ function updateSelectedRecipe(name: string): void {
   selectedRecipe.value = recipes.filter((recipe) => recipe.name === name)[0];
 }
 
-function trashRecipe(target: RecipeType | undefined = undefined) {
+function trashRecipe(target: Recipe | undefined = undefined) {
   const index = recipes.indexOf(target || selectedRecipe.value);
 
   recipes.splice(index, 1);
@@ -95,10 +95,10 @@ function trashDirection(index: number): void {
 }
 
 function clearSelectedRecipe(): void {
-  selectedRecipe.value = {} as RecipeType;
+  selectedRecipe.value = {} as Recipe;
 }
 
-export default function useRecipes() {
+export default function useStore() {
   return {
     recipes,
     selectedRecipe,

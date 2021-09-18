@@ -1,3 +1,47 @@
+<script lang="ts">
+import { defineComponent, ref } from "vue";
+import { PencilAltIcon } from "@heroicons/vue/solid";
+import RecipeViewList from "@/components/RecipeViewList.vue";
+import RecipeViewName from "@/components/RecipeViewName.vue";
+import AppTrashRecipe from "@/components/AppTrashRecipe.vue";
+import useStore from "@/store/Store";
+
+export default defineComponent({
+  components: {
+    PencilAltIcon,
+    RecipeViewList,
+    RecipeViewName,
+    AppTrashRecipe,
+  },
+  emits: ["delete", "updateRecipe"],
+  setup() {
+    const {
+      selectedRecipe,
+      addIngredient,
+      addDirection,
+      updateIngredients,
+      updateDirection,
+    } = useStore();
+
+    const mode = ref<boolean>(false);
+
+    function switchEdit() {
+      mode.value = !mode.value;
+    }
+
+    return {
+      recipe: selectedRecipe,
+      mode,
+      switchEdit,
+      addIngredient,
+      addDirection,
+      updateIngredients,
+      updateDirection,
+    };
+  },
+});
+</script>
+
 <template>
   <transition name="fade" mode="out-in">
     <div v-if="recipe && recipe.name" class="default-container recipe-view">
@@ -52,47 +96,3 @@
   @apply opacity-100;
 }
 </style>
-
-<script lang="ts">
-import { defineComponent, ref } from "vue";
-import { PencilAltIcon } from "@heroicons/vue/solid";
-import RecipeViewList from "@/components/RecipeViewList.vue";
-import RecipeViewName from "@/components/RecipeViewName.vue";
-import TrashRecipe from "@/components/TrashRecipe.vue";
-import useRecipes from "@/composables/useRecipes";
-
-export default defineComponent({
-  components: {
-    PencilAltIcon,
-    RecipeViewList,
-    RecipeViewName,
-    TrashRecipe,
-  },
-  emits: ["delete", "updateRecipe"],
-  setup() {
-    const {
-      selectedRecipe,
-      addIngredient,
-      addDirection,
-      updateIngredients,
-      updateDirection,
-    } = useRecipes();
-
-    const mode = ref<boolean>(false);
-
-    function switchEdit() {
-      mode.value = !mode.value;
-    }
-
-    return {
-      recipe: selectedRecipe,
-      mode,
-      switchEdit,
-      addIngredient,
-      addDirection,
-      updateIngredients,
-      updateDirection,
-    };
-  },
-});
-</script>
