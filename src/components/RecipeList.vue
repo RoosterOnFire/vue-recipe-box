@@ -26,7 +26,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="default-container">
+  <div class="container-look recipe-list">
     <PlusCircleIcon class="icon plus-circle-icon" @click="addRecipe" />
     <ListTransition>
       <li
@@ -43,7 +43,12 @@ export default defineComponent({
 </template>
 
 <style lang="postcss" scoped>
+.recipe-list {
+  @apply flex flex-col gap-y-4;
+}
+
 .list-item {
-  @apply flex justify-between hover:bg-gray-300 cursor-pointer;
+  @apply p-2 flex justify-between items-center;
+  @apply rounded hover:bg-gray-300 cursor-pointer;
 }
 </style>

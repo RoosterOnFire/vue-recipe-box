@@ -44,7 +44,7 @@ export default defineComponent({
 
 <template>
   <transition name="fade" mode="out-in">
-    <div v-if="recipe && recipe.name" class="default-container recipe-view">
+    <div v-if="recipe && recipe.name" class="container-look recipe-view">
       <RecipeViewName
         v-model:name="recipe.name"
         :mode="mode"
@@ -70,15 +70,15 @@ export default defineComponent({
         :update-value="updateDirection"
       />
     </div>
-    <div v-else class="default-container">
-      <h2 class="italic text-3xl">No recipe selected</h2>
+    <div v-else class="container-look recipe-view">
+      <h2 class="text-3xl">No recipe selected</h2>
     </div>
   </transition>
 </template>
 
 <style lang="postcss">
 .recipe-view {
-  @apply grid grid-cols-1 md:grid-cols-2 w-full space-y-4;
+  @apply grid grid-cols-1 md:grid-cols-2 place-items-center gap-4;
 }
 
 .fade-enter-active,

@@ -29,11 +29,11 @@ export default defineComponent({
   }
 
   #app {
-    @apply max-w-2xl h-full mx-auto flex flex-col gap-y-8 justify-center items-center;
+    @apply max-w-2xl h-full mx-auto flex flex-col gap-y-8 justify-center items-stretch font-mono;
   }
 
   .header {
-    @apply font-serif italic text-6xl;
+    @apply text-6xl;
   }
 
   .icon {
@@ -44,8 +44,8 @@ export default defineComponent({
     @apply mx-auto;
   }
 
-  .default-container {
-    @apply container p-2 bg-gray-100 border-2 border-gray-400 rounded shadow-md;
+  .container-look {
+    @apply p-2 bg-gray-200 border-2 border-gray-300 rounded shadow-md;
   }
 }
 </style>

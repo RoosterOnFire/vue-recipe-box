@@ -48,20 +48,21 @@ export default defineComponent({
 </script>
 
 <template>
-  <div>
-    <h3 class="header">{{ header }}</h3>
-    <list-transition>
+  <div class="recipe-view-list">
+    <h2 class="header">{{ header }}</h2>
+    <ListTransition>
       <li v-for="(value, index) in items" :key="index" class="list-item">
         <input
-          v-if="mode"
+          class="input"
           type="text"
+          v-if="mode"
           :value="value"
           @input.self="updateValue(index, $event)"
         />
         <RecipeViewTrash v-if="mode" :type="type" :index="index" />
         <template v-else>{{ value }}</template>
       </li>
-    </list-transition>
+    </ListTransition>
     <PlusCircleIcon
       v-if="mode"
       class="icon plus-circle-icon"
@@ -71,11 +72,19 @@ export default defineComponent({
 </template>
 
 <style lang="postcss" scoped>
+.recipe-view-list {
+  @apply flex flex-col gap-y-4;
+}
+
 .header {
-  @apply mb-4;
+  @apply font-normal text-xl;
 }
 
 .list-item {
-  @apply pl-4 flex space-x-3;
+  @apply flex items-center space-x-3;
+}
+
+.input {
+  @apply p-2;
 }
 </style>
